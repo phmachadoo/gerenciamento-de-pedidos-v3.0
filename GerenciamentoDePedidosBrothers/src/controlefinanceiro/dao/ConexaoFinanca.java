@@ -1,5 +1,5 @@
 
-package dao;
+package controlefinanceiro.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;

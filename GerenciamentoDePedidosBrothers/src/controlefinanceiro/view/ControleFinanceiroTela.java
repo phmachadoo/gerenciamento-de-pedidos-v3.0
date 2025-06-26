@@ -1,21 +1,14 @@
 
-package view;
+package controlefinanceiro.view;
 
-import cashcopiadoradao.BrothersDAO;
-import cashcopiadoradatabase.ConexaoSQLite;
-import cashcopiadoramodel.Brothers;
-import com.lowagie.text.Document;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
-import java.sql.Connection;
+import controlefinanceiro.dao.BrothersFinancaDAO;
+import controlefinanceiro.model.BrothersFinanca;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class ControleFinanceiroTela extends javax.swing.JFrame {
-    BrothersDAO broDAO = new BrothersDAO();
+    BrothersFinancaDAO broDAO = new BrothersFinancaDAO();
     Date[] periodo = new Date[2];
     int contador = 0;
     
@@ -42,6 +35,7 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
         txtTipo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        calendario = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         btntEntrada = new javax.swing.JButton();
         btnSaida = new javax.swing.JButton();
@@ -53,7 +47,7 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 102));
@@ -91,22 +85,27 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(3, 3, 3)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtValor, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(txtMotivo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 44, Short.MAX_VALUE))
+                    .addComponent(calendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,14 +119,16 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(calendario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cashbrothersimagens/LOGO1.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/controlefinanceiro/image/LOGO1.jpg"))); // NOI18N
 
         btntEntrada.setBackground(new java.awt.Color(0, 0, 102));
         btntEntrada.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -214,15 +215,14 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))
+                        .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))))
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +268,7 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
             try {
                 double valor = Double.parseDouble(valorStr);
                
-                Brothers brothers = new Brothers(valor, tipo, tipoPagamento, motivo, date);
+                BrothersFinanca brothers = new BrothersFinanca(valor, tipo, tipoPagamento, motivo, date);
                 
                 if (broDAO.entradaValores(brothers)){
                 txtArea.setText("Inserido com sucesso!");
@@ -307,7 +307,7 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
             try {
                  double valor = Double.parseDouble(valorStr);
                  
-                 Brothers brothers = new Brothers(valor,tipo,tipoPagamento,motivo,date);
+                 BrothersFinanca brothers = new BrothersFinanca(valor,tipo,tipoPagamento,motivo,date);
                  
                  
                  if(broDAO.saidaValores(brothers)){
@@ -368,7 +368,7 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
         Date date = calendario.getDate();
         
         int id = 0;
-        Brothers brothers = new Brothers(id);
+        BrothersFinanca brothers = new BrothersFinanca(id);
         if(contador<2 && date != null){
             periodo[contador] = date;
             
@@ -433,7 +433,7 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
             
                 int id = Integer.parseInt(idStr);
                 
-                Brothers brothers = new Brothers(id);
+                BrothersFinanca brothers = new BrothersFinanca(id);
                 
                 if (broDAO.remover(brothers)) {
                     txtArea.setText(" Removido com sucesso!");
@@ -470,6 +470,7 @@ public class ControleFinanceiroTela extends javax.swing.JFrame {
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSaida;
     private javax.swing.JButton btntEntrada;
+    private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
