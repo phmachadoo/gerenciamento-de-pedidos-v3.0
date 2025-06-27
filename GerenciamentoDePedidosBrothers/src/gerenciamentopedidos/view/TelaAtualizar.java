@@ -87,9 +87,11 @@ public class TelaAtualizar extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         btnControleFinan = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
         btnX = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -176,12 +178,25 @@ public class TelaAtualizar extends javax.swing.JFrame {
         btnControleFinan.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnControleFinan.setForeground(new java.awt.Color(255, 255, 255));
         btnControleFinan.setText("CONTROLE FINANCEIRO");
+        btnControleFinan.setBorderPainted(false);
         btnControleFinan.setContentAreaFilled(false);
         btnControleFinan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnControleFinan.setDefaultCapable(false);
         btnControleFinan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnControleFinanActionPerformed(evt);
+            }
+        });
+
+        btnClientes.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnClientes.setText("CLIENTES");
+        btnClientes.setBorderPainted(false);
+        btnClientes.setContentAreaFilled(false);
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
             }
         });
 
@@ -193,18 +208,21 @@ public class TelaAtualizar extends javax.swing.JFrame {
             .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnControleFinan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(titleBar2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addComponent(btnControleFinan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleBar2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
+            .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         titleBar2Layout.setVerticalGroup(
             titleBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleBar2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(32, 32, 32)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(42, 42, 42)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,7 +258,11 @@ public class TelaAtualizar extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel2.setText("Atualizar");
+        jLabel2.setText("ATUALIZAR");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel4.setText("O QUE DESEJA?");
 
         javax.swing.GroupLayout titleBarLayout = new javax.swing.GroupLayout(titleBar);
         titleBar.setLayout(titleBarLayout);
@@ -248,14 +270,18 @@ public class TelaAtualizar extends javax.swing.JFrame {
             titleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleBarLayout.createSequentialGroup()
                 .addComponent(titleBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(titleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleBarLayout.createSequentialGroup()
                         .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(btnX, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleBarLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(titleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleBarLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(54, 54, 54)))
                         .addGap(80, 80, 80))))
         );
         titleBarLayout.setVerticalGroup(
@@ -268,7 +294,9 @@ public class TelaAtualizar extends javax.swing.JFrame {
                     .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(203, 203, 203)
                 .addComponent(jLabel2)
-                .addGap(333, 333, 333))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(267, 267, 267))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,6 +346,11 @@ public class TelaAtualizar extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnListarActionPerformed
 
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        new TelaClientes().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -357,12 +390,14 @@ public class TelaAtualizar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnControleFinan;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnX;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel titleBar;

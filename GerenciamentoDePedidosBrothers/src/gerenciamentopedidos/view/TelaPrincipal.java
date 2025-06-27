@@ -193,6 +193,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnClientes.setText("CLIENTES");
         btnClientes.setBorderPainted(false);
         btnClientes.setContentAreaFilled(false);
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientesActionPerformed(evt);
@@ -346,7 +347,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
+        new TelaClientes().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnClientesActionPerformed
 
     /**

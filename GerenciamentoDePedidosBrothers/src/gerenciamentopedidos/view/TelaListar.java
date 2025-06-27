@@ -87,6 +87,7 @@ public class TelaListar extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         btnControleFinan = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
         btnX = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -177,12 +178,25 @@ public class TelaListar extends javax.swing.JFrame {
         btnControleFinan.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnControleFinan.setForeground(new java.awt.Color(255, 255, 255));
         btnControleFinan.setText("CONTROLE FINANCEIRO");
+        btnControleFinan.setBorderPainted(false);
         btnControleFinan.setContentAreaFilled(false);
         btnControleFinan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnControleFinan.setDefaultCapable(false);
         btnControleFinan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnControleFinanActionPerformed(evt);
+            }
+        });
+
+        btnClientes.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnClientes.setText("CLIENTES");
+        btnClientes.setBorderPainted(false);
+        btnClientes.setContentAreaFilled(false);
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
             }
         });
 
@@ -199,13 +213,16 @@ public class TelaListar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
+            .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         titleBar2Layout.setVerticalGroup(
             titleBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleBar2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(42, 42, 42)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,7 +270,7 @@ public class TelaListar extends javax.swing.JFrame {
             titleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleBarLayout.createSequentialGroup()
                 .addComponent(titleBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(titleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleBarLayout.createSequentialGroup()
                         .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,6 +346,11 @@ public class TelaListar extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnListarActionPerformed
 
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        new TelaClientes().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -368,6 +390,7 @@ public class TelaListar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnControleFinan;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnMinimizar;
