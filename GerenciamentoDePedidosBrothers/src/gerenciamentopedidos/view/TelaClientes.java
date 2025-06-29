@@ -290,6 +290,7 @@ public class TelaClientes extends javax.swing.JFrame {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
@@ -322,6 +323,7 @@ public class TelaClientes extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CADASTRAR");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -417,6 +419,7 @@ public class TelaClientes extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("ATUALIZAR");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jTextArea3.setColumns(20);
         jTextArea3.setForeground(new java.awt.Color(0, 0, 102));
@@ -497,6 +500,7 @@ public class TelaClientes extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("REMOVER");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -564,6 +568,7 @@ public class TelaClientes extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("LISTAR");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
