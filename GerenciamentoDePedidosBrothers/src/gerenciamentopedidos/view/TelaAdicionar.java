@@ -24,7 +24,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
         titleBar.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 initialClick = e.getPoint();
-                getComponentAt(initialClick); // Pega a posição clicada
+                getComponentAt(initialClick); 
             }
         });
 
