@@ -25,9 +25,6 @@ public class Pedido {
         this.id = id;
     }
     
-
-  
-
     public Cliente getCliente() {
         return cliente;
     }

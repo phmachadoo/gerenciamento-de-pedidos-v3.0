@@ -6,15 +6,25 @@ package gerenciamentopedidos.model;
 
 public class Cliente {
     private int id, totalPedidos;
-    private String nome, email, telefone;
+    private String nome, descricao, email, telefone;
 
-    public Cliente(int id, String nome, String email, String telefone,int totalPedidos) {
+    public Cliente(int id, int totalPedidos, String nome, String descricao, String email, String telefone) {
         this.id = id;
+        this.totalPedidos = totalPedidos;
         this.nome = nome;
+        this.descricao = descricao;
         this.email = email;
         this.telefone = telefone;
-        this.totalPedidos = totalPedidos;
     }
+    
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
 
     public int getId() {
         return id;

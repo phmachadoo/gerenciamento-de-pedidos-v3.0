@@ -9,13 +9,12 @@ package gerenciamentopedidos.model;
  * @author TERMINAL 2
  */
 public class Produto {
-    private String nomeProduto, descricao;
+    private String nomeProduto;
     private int quantidade;
     private double preco;
 
-    public Produto(String nomeProduto, String descricao, int quantidade, double preco) {
+    public Produto(String nomeProduto, int quantidade, double preco) {
         this.nomeProduto = nomeProduto;
-        this.descricao = descricao;
         this.quantidade = quantidade;
         this.preco = preco;
     }
@@ -27,16 +26,7 @@ public class Produto {
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
     }
-
     
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
