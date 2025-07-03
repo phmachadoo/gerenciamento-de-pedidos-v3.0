@@ -1,13 +1,12 @@
 
-package controlefinanceiro.dao;
+package gerenciamentopedidos.database;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
-
-public class ConexaoFinanca {
-    private static final String URL = "jdbc:sqlite:brotherscopiadora.db";
+public class BrothersDataBase {
+    private static final String URL = "jdbc:sqlite:gerenciamento_brothers.db";
     
     public static Connection conexao(){
         Connection conn = null; 
@@ -22,6 +21,7 @@ public class ConexaoFinanca {
         e.printStackTrace();
         return null;
         }
+    
     }
     
 }

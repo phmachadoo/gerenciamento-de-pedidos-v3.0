@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package gerenciamentopedidos.model;
 
 public class Pedido {
@@ -9,11 +5,14 @@ public class Pedido {
     private Cliente cliente;
     private Produto produto;
     private String status;
+    private double valorTotal;
+    //adicionar data
 
-    public Pedido(int id, Cliente cliente, Produto produto, String status) {
+    public Pedido(int id, Cliente cliente, Produto produto, double valorTotal, String status) {
         this.id = id;
         this.cliente = cliente;
         this.produto = produto;
+        this.valorTotal = valorTotal;
         this.status = status;
     }
 
