@@ -10,9 +10,9 @@ public class ClienteDataBase {
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "nome TEXT NOT NULL,"
             + "email TEXT DEFAULT '',"
-            + "telefone TEXT NOT NULL UNIQUE,"
+            + "telefone TEXT DEFAULT '',"
             + "descricao TEXT DEFAULT '',"
-            + "total_pedidos INTEGER NOT NULL DEFAULT 0"
+            + "total_pedidos INTEGER DEFAULT 0"
             + ");";
     
         try(Connection conn = BrothersDataBase.conexao();

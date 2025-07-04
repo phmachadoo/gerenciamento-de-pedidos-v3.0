@@ -17,6 +17,16 @@ public class Cliente {
         this.telefone = telefone;
     }
     
+    public Cliente() {
+        this.id = 0;
+        this.totalPedidos = 0;
+        this.nome = "";
+        this.descricao = "";
+        this.email = "";
+        this.telefone = "";
+    }
+    
+    
     public String getDescricao() {
         return descricao;
     }
@@ -65,11 +75,6 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
-    
-    
-    
-    
     
     
     

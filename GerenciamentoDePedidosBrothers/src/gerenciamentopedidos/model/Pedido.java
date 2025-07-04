@@ -1,21 +1,28 @@
 package gerenciamentopedidos.model;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class Pedido {
     private int id;
     private Cliente cliente;
-    private Produto produto;
+    private List<Produto> carrinho = new ArrayList<>();
     private String status;
     private double valorTotal;
-    //adicionar data
+    private Date data;
 
-    public Pedido(int id, Cliente cliente, Produto produto, double valorTotal, String status) {
+    public Pedido(int id, Cliente cliente, String status, double valorTotal, Date data) {
         this.id = id;
         this.cliente = cliente;
-        this.produto = produto;
-        this.valorTotal = valorTotal;
         this.status = status;
+        this.valorTotal = valorTotal;
+        this.data = data;
     }
 
+    public Pedido() {
+    }
+   
     public int getId() {
         return id;
     }
@@ -32,20 +39,28 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
    
     
