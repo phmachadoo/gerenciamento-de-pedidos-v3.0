@@ -12,6 +12,7 @@ public class ProdutoDataBase {
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "id_pedido INTEGER NOT NULL,"
             + "nome_produto TEXT NOT NULL,"
+            + "descricao TEXT DEFAULT '',"
             + "quantidade INTEGER NOT NULL,"
             + "valor_unitario REAL NOT NULL,"
             + "FOREIGN KEY(id_pedido) REFERENCES pedido(id)"
@@ -21,11 +22,11 @@ public class ProdutoDataBase {
              PreparedStatement ps = conn.prepareStatement(sql);
                 ){
             
-            ps.executeUpdate();
+            ps.execute();
             return true;
             
         } catch (SQLException e) {
-        e.printStackTrace();
+            e.printStackTrace();
             System.out.println("Não foi possivel criar a tabela. Motivo: "+e.getMessage());
             return false;
         

@@ -4,23 +4,22 @@ package gerenciamentopedidos.model;
 
 public class Produto {
     private int id;
-    private String nomeProduto;
+    private String nomeProduto, descricao;
     private int quantidade;
     private double preco;
 
-    public Produto(int id,String nomeProduto, int quantidade, double preco) {
-        this.id=id;
+    public Produto(int id, String nomeProduto, String descricao, int quantidade, double preco) {
+        this.id = id;
         this.nomeProduto = nomeProduto;
+        this.descricao = descricao;
         this.quantidade = quantidade;
         this.preco = preco;
     }
 
-     public Produto() {
-        this.nomeProduto = "";
-        this.quantidade = 0;
-        this.preco = 0.0;
+    public Produto() {
     }
-     
+
+
     public String getNomeProduto() {
         return nomeProduto;
     }

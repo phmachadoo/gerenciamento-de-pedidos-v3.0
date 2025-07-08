@@ -12,7 +12,7 @@ public class Pedido {
     private double valorTotal;
     private Date data;
 
-    public Pedido(int id, Cliente cliente, String status, double valorTotal, Date data) {
+    public Pedido(int id, Cliente cliente, String status, Date data,double valorTotal) {
         this.id = id;
         this.cliente = cliente;
         this.status = status;

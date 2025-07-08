@@ -19,7 +19,7 @@ public class ClienteDataBase {
             PreparedStatement ps = conn.prepareStatement(sql);
                 ) {
             
-            ps.executeUpdate();
+            ps.execute();
             return true;
             
         } catch (SQLException e) {
@@ -27,8 +27,6 @@ public class ClienteDataBase {
             System.out.println("Não foi possivel criar a tabela clientes. Motivo: " + e.getMessage());
             return false;
         }
-    
-    
     }
     
 }
