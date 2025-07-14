@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class PedidoDataBase {
     
     public boolean pedido(){
-    String sql = "CREATE TABLE IF NOT EXISTS PEDIDO("
+    String sql = "CREATE TABLE IF NOT EXISTS pedidos("
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "id_cliente INTERGER NOT NULL,"
             + "data TEXT NOT NULL,"

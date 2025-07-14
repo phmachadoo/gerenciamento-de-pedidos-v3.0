@@ -15,6 +15,7 @@ public class ClienteDataBase {
             + "total_pedidos INTEGER DEFAULT 0"
             + ");";
     
+            //mudar as configurações da tabela
         try(Connection conn = BrothersDataBase.conexao();
             PreparedStatement ps = conn.prepareStatement(sql);
                 ) {
