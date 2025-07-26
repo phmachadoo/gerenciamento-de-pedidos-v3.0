@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 public class ClientesDao {
     
     public boolean inserirClientes(Cliente cliente){
-    String sql = "INSERT INTO clientes VALUES (default,?,?,?,?,default);";
+    String sql = "INSERT INTO clientes (nome, telefone, email, descricao) VALUES (?, ?, ?, ?);";
     
         try (Connection conn = BrothersDataBase.conexao();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -29,9 +29,10 @@ public class ClientesDao {
         }
     }
     
-    public boolean atualizarCliente(Cliente cliente){
-    String sql = "UPDATE clientes SET nome = ? AND email = ? AND telefone = ?";
-    
+    public void atualizarCliente(){
+    String sql = "UPDATE clientes SET"; //nome = ? AND email = ? AND telefone = ?";
+            
+            
     }
     
     
@@ -70,8 +71,8 @@ public class ClientesDao {
               cliente.setDescricao(rs.getString("descricao"));
               cliente.setTotalPedidos(rs.getInt("total_pedidos"));
               
-      sb.append("ID: " + cliente.getId() + " | NOME: " + cliente.getNome() + " | EMAIL: " + cliente.getEmail() +
-      " | TEL: " + cliente.getTelefone() + " | DESCRIÇÃO: " + cliente.getDescricao());
+      sb.append("ID: " + cliente.getId() + " | NOME: " + cliente.getNome() + "\nEMAIL: " + cliente.getEmail() +
+      " | TEL: " + cliente.getTelefone() + "\nDESCRIÇÃO: " + cliente.getDescricao());
               }
               
           } catch (SQLException e) {

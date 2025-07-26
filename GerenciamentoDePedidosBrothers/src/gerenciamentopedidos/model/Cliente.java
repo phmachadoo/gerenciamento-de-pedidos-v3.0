@@ -8,7 +8,7 @@ public class Cliente {
     private int id, totalPedidos;
     private String nome, descricao, email, telefone;
 
-    public Cliente(int id, int totalPedidos, String nome, String descricao, String email, String telefone) {
+    public Cliente(int id, int totalPedidos, String nome, String telefone,String email,String descricao) {
         this.id = id;
         this.totalPedidos = totalPedidos;
         this.nome = nome;
@@ -17,8 +17,14 @@ public class Cliente {
         this.telefone = telefone;
     }
     
+    public Cliente(String nome, String telefone,String email,String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.email = email;
+        this.telefone = telefone;
+    }
+    
     public Cliente() {
-        this.id = 0;
         this.totalPedidos = 0;
         this.nome = "";
         this.descricao = "";
