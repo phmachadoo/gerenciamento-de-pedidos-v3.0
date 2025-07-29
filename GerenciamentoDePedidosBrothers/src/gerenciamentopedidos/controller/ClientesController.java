@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package gerenciamentopedidos.controller;
 
 import gerenciamentopedidos.model.Cliente;
@@ -27,9 +24,8 @@ public class ClientesController {
     public String listarClienteController(String nome){
         try {
             Cliente clientes = new Cliente();
+            clientes.setNome(nome);
             return clienteService.listarClienteService(clientes);
-            
-            
             
             
         } catch (IllegalArgumentException e) {

@@ -40,11 +40,6 @@ public class ClientesService {
     
     public String listarClienteService(Cliente cliente){
     
-    if(cliente.getNome().trim().isEmpty() || cliente.getNome() == null){
-    throw new IllegalArgumentException("O campo 'NOME'\nnão pode ser vazio.");
-    
-    }
-    
     clienteDataBase.clientes();
     return clienteDao.listarClientes(cliente);
     

@@ -54,34 +54,44 @@ public class ClientesDao {
   }
   
       public String listarClientes(Cliente cliente){
-      String sql = "SELECT * FROM clientes WHERE nome = ?;";
       StringBuilder sb = new StringBuilder();
+      String sql;
+      boolean condicao = cliente.getNome() == null || cliente.getNome().isEmpty();
+      
+      if(condicao){
+          sql= "SELECT * FROM clientes ORDER BY id;";
+         }else{
+          sql = "SELECT * FROM clientes WHERE nome LIKE ? ORDER BY id;";
+         }
+      
           try (Connection conn = BrothersDataBase.conexao();
-               PreparedStatement ps = conn.prepareStatement(sql);
-               ResultSet rs = ps.executeQuery();
-                  ){
+               PreparedStatement ps = conn.prepareStatement(sql)){
               
-              ps.setString(1, cliente.getNome());
+              if(!condicao){
+                  ps.setString(1, "%" + cliente.getNome() + "%");
+              }
+
+              
+          try (ResultSet rs = ps.executeQuery()){
               
               while(rs.next()){
-              cliente.setId(rs.getInt("id"));
-              cliente.setNome(rs.getString("nome"));
-              cliente.setEmail(rs.getString("email"));
-              cliente.setTelefone(rs.getString("telefone"));
-              cliente.setDescricao(rs.getString("descricao"));
-              cliente.setTotalPedidos(rs.getInt("total_pedidos"));
+              int id = rs.getInt("id");
+              String nome = rs.getString("nome");
+              String email = rs.getString("email");
+              String telefone = rs.getString("telefone");
+              String descricao = rs.getString("descricao");
               
-      sb.append("ID: " + cliente.getId() + " | NOME: " + cliente.getNome() + "\nEMAIL: " + cliente.getEmail() +
-      " | TEL: " + cliente.getTelefone() + "\nDESCRIÇÃO: " + cliente.getDescricao());
-              }
-              
+               sb.append("ID: " + id + " | NOME: " + nome +
+                       "\nEMAIL: " + email + "\nTELEFONE: " + telefone + "\nDESCRIÇÃO: " + descricao +"\n\n");
+                               }
+          }
+                     
           } catch (SQLException e) {
           e.printStackTrace();
           return "NÃO FOI POSSÍVEL MANTER A CONEXÃO.";
           }
           
       return sb.toString();
-      
       
       }
   
