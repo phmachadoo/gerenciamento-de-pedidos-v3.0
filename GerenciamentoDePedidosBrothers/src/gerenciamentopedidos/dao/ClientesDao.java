@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ClientesDao {
     
@@ -17,8 +18,8 @@ public class ClientesDao {
                 ){
             
             ps.setString(1, cliente.getNome());
-            ps.setString(2,cliente.getEmail());
-            ps.setString(3, cliente.getTelefone());
+            ps.setString(2,cliente.getTelefone());
+            ps.setString(3,cliente.getEmail());
             ps.setString(4, cliente.getDescricao());
             int linhas = ps.executeUpdate();
             return linhas>0;
@@ -53,36 +54,39 @@ public class ClientesDao {
       }
   }
   
-      public String listarClientes(Cliente cliente){
-      StringBuilder sb = new StringBuilder();
-      String sql;
-      boolean condicao = cliente.getNome() == null || cliente.getNome().isEmpty();
-      
-      if(condicao){
-          sql= "SELECT * FROM clientes ORDER BY id;";
-         }else{
-          sql = "SELECT * FROM clientes WHERE nome LIKE ? ORDER BY id;";
-         }
-      
+      public String listarClientes(String nome){
+        ArrayList<Cliente> lista = new ArrayList<>();
+          
+        String sql;
+        boolean condicao = nome.isEmpty();
+    
+        if(condicao){
+        sql = "SELECT * FROM clientes ORDER BY id;";
+        }else{
+        sql = "SELECT * FROM cliente WHERE nome LIKE ? ORDER BY id;";
+        }
+        
           try (Connection conn = BrothersDataBase.conexao();
                PreparedStatement ps = conn.prepareStatement(sql)){
               
               if(!condicao){
-                  ps.setString(1, "%" + cliente.getNome() + "%");
+                  ps.setString(1, "%" + nome + "%");
               }
 
               
           try (ResultSet rs = ps.executeQuery()){
               
-              while(rs.next()){
-              int id = rs.getInt("id");
-              String nome = rs.getString("nome");
-              String email = rs.getString("email");
-              String telefone = rs.getString("telefone");
-              String descricao = rs.getString("descricao");
+              Cliente cliente = new Cliente();
               
-               sb.append("ID: " + id + " | NOME: " + nome +
-                       "\nEMAIL: " + email + "\nTELEFONE: " + telefone + "\nDESCRIÇÃO: " + descricao +"\n\n");
+              while(rs.next()){
+              cliente.setId(rs.getInt("id")); 
+              cliente.setNome(rs.getString("nome"));
+              cliente.setTelefone(rs.getString("telefone"));
+              cliente.setEmail(rs.getString("email"));
+              cliente.setDescricao(rs.getString("descricao"));
+              
+              
+              
                                }
           }
                      
@@ -91,7 +95,10 @@ public class ClientesDao {
           return "NÃO FOI POSSÍVEL MANTER A CONEXÃO.";
           }
           
-      return sb.toString();
+          
+          
+          return sb.toString();
+      
       
       }
   

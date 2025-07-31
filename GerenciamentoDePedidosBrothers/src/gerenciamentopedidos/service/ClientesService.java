@@ -14,21 +14,19 @@ public class ClientesService {
     
     public String cadastroClienteService(Cliente cliente){
         
-        if((cliente.getNome() == null || cliente.getNome().trim().isEmpty()) &&
-             (cliente.getTelefone() == null || cliente.getTelefone().trim().isEmpty()) &&
-                (cliente.getEmail()== null || cliente.getEmail().trim().isEmpty()) && 
-                   (cliente.getDescricao() == null  || cliente.getDescricao().trim().isEmpty())){
+        if(cliente.getNome().trim().isEmpty()){
             
-        throw new IllegalArgumentException("Campos 'NOME', 'TELEFONE', 'EMAIL'\n"
-                + "e 'DESCRIÇÃO' não podem ser vazios.");
+        throw new IllegalArgumentException("Campos 'NOME''\n"
+                + "não pode ser vazio.");
         
-        } else if ((cliente.getTelefone() == null || cliente.getTelefone().trim().isEmpty()) && 
-        (cliente.getEmail() == null && cliente.getEmail().trim().isEmpty())) {
+        } else if (cliente.getTelefone().trim().isEmpty() && 
+                   cliente.getEmail().trim().isEmpty()) {
         throw new IllegalArgumentException("Campos 'TELEFONE' e 'EMAIL'\nnão podem ser vazios.");
         }
        
         clienteDataBase.clientes();
         clienteDao.inserirClientes(cliente);
+        
         return "Nome: " + cliente.getNome() 
               + "\nTelefone: "+ cliente.getTelefone() + "\nEmail: " + cliente.getEmail()
               + "\nDescrição: " + cliente.getDescricao();  
@@ -38,10 +36,19 @@ public class ClientesService {
     
     
     
-    public String listarClienteService(Cliente cliente){
+    public String listarClienteService(String nome){
+    String sql;
+    boolean condicao = nome.isEmpty();
     
+    if(condicao){
+    sql = "SELECT * FROM clientes ORDER BY id;";
+    }else{
+    sql = "SELECT * FROM cliente WHERE nome LIKE ? ORDER BY id;";
+    }
+    
+        
     clienteDataBase.clientes();
-    return clienteDao.listarClientes(cliente);
+    return clienteDao.listarClientes(sql, condicao, nome);
     
     }
     

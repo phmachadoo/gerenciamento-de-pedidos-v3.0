@@ -789,7 +789,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
     private void btnListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarClienteActionPerformed
         String nome = txtNomeListar.getText();
-       
+        
         txtAreaListar.setText(clientesController.listarClienteController(nome));
     }//GEN-LAST:event_btnListarClienteActionPerformed
 

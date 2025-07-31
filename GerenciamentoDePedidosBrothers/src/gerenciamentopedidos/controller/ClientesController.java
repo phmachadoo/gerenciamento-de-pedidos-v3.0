@@ -23,9 +23,9 @@ public class ClientesController {
     
     public String listarClienteController(String nome){
         try {
-            Cliente clientes = new Cliente();
-            clientes.setNome(nome);
-            return clienteService.listarClienteService(clientes);
+            //Cliente clientes = new Cliente();
+            //clientes.setNome(nome);
+            return clienteService.listarClienteService(nome);
             
             
         } catch (IllegalArgumentException e) {
