@@ -17,8 +17,8 @@ public class ClientesDao {
                 ){
             
             ps.setString(1, cliente.getNome());
-            ps.setString(2,cliente.getEmail());
-            ps.setString(3, cliente.getTelefone());
+            ps.setString(2,cliente.getTelefone());
+            ps.setString(3, cliente.getEmail());
             ps.setString(4, cliente.getDescricao());
             int linhas = ps.executeUpdate();
             return linhas>0;
@@ -29,8 +29,26 @@ public class ClientesDao {
         }
     }
     
-    public void atualizarCliente(){
-    String sql = "UPDATE clientes SET"; //nome = ? AND email = ? AND telefone = ?";
+    public void atualizarCliente(Cliente cliente){
+    String sql = "UPDATE cliente SET";
+    
+    if(cliente.getNome() != null || !cliente.getNome().isEmpty()){
+        sql += "nome = ?";
+    }
+    
+    if(cliente.getTelefone() != null || !cliente.getTelefone().isEmpty()){
+        sql += ",telefone = ?";
+    }
+    
+    if(cliente.getEmail() == null || cliente.getEmail().isEmpty()){
+                    sql = ",email = ?";}
+    
+    if(cliente.getDescricao() == null || cliente.getDescricao().isEmpty()){
+                   sql = ",descricao = ?";
+    }
+    
+    
+    
             
             
     }
@@ -53,16 +71,8 @@ public class ClientesDao {
       }
   }
   
-      public String listarClientes(Cliente cliente){
+      public String listarClientes(String sql, boolean condicao, Cliente cliente){
       StringBuilder sb = new StringBuilder();
-      String sql;
-      boolean condicao = cliente.getNome() == null || cliente.getNome().isEmpty();
-      
-      if(condicao){
-          sql= "SELECT * FROM clientes ORDER BY id;";
-         }else{
-          sql = "SELECT * FROM clientes WHERE nome LIKE ? ORDER BY id;";
-         }
       
           try (Connection conn = BrothersDataBase.conexao();
                PreparedStatement ps = conn.prepareStatement(sql)){
@@ -70,19 +80,19 @@ public class ClientesDao {
               if(!condicao){
                   ps.setString(1, "%" + cliente.getNome() + "%");
               }
-
               
           try (ResultSet rs = ps.executeQuery()){
               
               while(rs.next()){
               int id = rs.getInt("id");
               String nome = rs.getString("nome");
-              String email = rs.getString("email");
               String telefone = rs.getString("telefone");
+              String email = rs.getString("email");
               String descricao = rs.getString("descricao");
               
                sb.append("ID: " + id + " | NOME: " + nome +
-                       "\nEMAIL: " + email + "\nTELEFONE: " + telefone + "\nDESCRIÇÃO: " + descricao +"\n\n");
+                       "\nTELEFONE: " + telefone + "\nEMAIL: " + email +
+                       "\nDESCRIÇÃO: " + descricao +"\n\n");
                                }
           }
                      

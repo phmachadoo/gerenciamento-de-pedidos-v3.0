@@ -36,6 +36,25 @@ public class ClientesController {
     }
     
     
+    public String removerClienteController(String strId){
+        try {
+            if(strId.isEmpty()){
+            return "Campo 'ID' não pode ser vazio.";
+        }
+            
+            Cliente clientes = new Cliente();
+            int id = Integer.parseInt(strId);
+            clientes.setId(id);
+            return clienteService.removerClienteService(clientes);
+            
+            
+        } catch (NumberFormatException e) {
+        return "Dados inválidos.\nAceita-se somente números.";
+        }
+    
+    }
+    
+    
     
     
     
