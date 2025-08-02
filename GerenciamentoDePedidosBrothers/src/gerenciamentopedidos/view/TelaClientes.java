@@ -106,8 +106,6 @@ public class TelaClientes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNomeAtualizar = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        txtTelAtualizar = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtEmailAtualizar = new javax.swing.JTextField();
         btnAtualizarCliente = new javax.swing.JButton();
@@ -117,6 +115,8 @@ public class TelaClientes extends javax.swing.JFrame {
         txtDescricaoAtualizar = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaAtualizar = new javax.swing.JTextArea();
+        txtTelAtualizar = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -421,17 +421,6 @@ public class TelaClientes extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 102));
         jLabel11.setText("NOME:");
 
-        jLabel12.setFont(new java.awt.Font("Dubai", 0, 15)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel12.setText("TELEFONE:");
-
-        txtTelAtualizar.setForeground(new java.awt.Color(0, 0, 102));
-        txtTelAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelAtualizarActionPerformed(evt);
-            }
-        });
-
         jLabel13.setFont(new java.awt.Font("Dubai", 0, 15)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 102));
         jLabel13.setText("EMAIL:");
@@ -465,29 +454,19 @@ public class TelaClientes extends javax.swing.JFrame {
         txtAreaAtualizar.setText("CLIENTES ATUALIZADOS...\n");
         jScrollPane3.setViewportView(txtAreaAtualizar);
 
+        txtTelAtualizar.setForeground(new java.awt.Color(0, 0, 102));
+
+        jLabel12.setFont(new java.awt.Font("Dubai", 0, 15)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel12.setText("TELEFONE:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTelAtualizar)
-                    .addComponent(txtEmailAtualizar)
-                    .addComponent(txtIDAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(txtDescricaoAtualizar)
-                    .addComponent(txtNomeAtualizar))
-                .addGap(0, 19, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -498,6 +477,22 @@ public class TelaClientes extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAtualizarCliente)
                         .addGap(77, 77, 77))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtEmailAtualizar)
+                    .addComponent(txtIDAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(txtDescricaoAtualizar)
+                    .addComponent(txtNomeAtualizar)
+                    .addComponent(txtTelAtualizar))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,6 +543,11 @@ public class TelaClientes extends javax.swing.JFrame {
         btnRemoverCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoverCliente.setText("REMOVER");
         btnRemoverCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRemoverCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverClienteActionPerformed(evt);
+            }
+        });
 
         txtAreaRemover.setColumns(20);
         txtAreaRemover.setForeground(new java.awt.Color(0, 0, 102));
@@ -573,7 +573,7 @@ public class TelaClientes extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIDRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane5)
@@ -797,9 +797,12 @@ public class TelaClientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAtualizarClienteActionPerformed
 
-    private void txtTelAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelAtualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelAtualizarActionPerformed
+    private void btnRemoverClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverClienteActionPerformed
+        String id = txtIDRemover.getText();
+        
+        txtAreaRemover.setText(clientesController.removerClienteController(id));
+        
+    }//GEN-LAST:event_btnRemoverClienteActionPerformed
 
     /**
      * @param args the command line arguments
