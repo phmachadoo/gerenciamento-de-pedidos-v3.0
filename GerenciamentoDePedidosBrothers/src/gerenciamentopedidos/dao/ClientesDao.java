@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 public class ClientesDao {
     
@@ -19,7 +18,7 @@ public class ClientesDao {
             
             ps.setString(1, cliente.getNome());
             ps.setString(2,cliente.getTelefone());
-            ps.setString(3,cliente.getEmail());
+            ps.setString(3, cliente.getEmail());
             ps.setString(4, cliente.getDescricao());
             int linhas = ps.executeUpdate();
             return linhas>0;
@@ -30,8 +29,26 @@ public class ClientesDao {
         }
     }
     
-    public void atualizarCliente(){
-    String sql = "UPDATE clientes SET"; //nome = ? AND email = ? AND telefone = ?";
+    public void atualizarCliente(Cliente cliente){
+    String sql = "UPDATE cliente SET";
+    
+    if(cliente.getNome() != null || !cliente.getNome().isEmpty()){
+        sql += "nome = ?";
+    }
+    
+    if(cliente.getTelefone() != null || !cliente.getTelefone().isEmpty()){
+        sql += ",telefone = ?";
+    }
+    
+    if(cliente.getEmail() == null || cliente.getEmail().isEmpty()){
+                    sql = ",email = ?";}
+    
+    if(cliente.getDescricao() == null || cliente.getDescricao().isEmpty()){
+                   sql = ",descricao = ?";
+    }
+    
+    
+    
             
             
     }
@@ -54,39 +71,49 @@ public class ClientesDao {
       }
   }
   
-      public String listarClientes(String nome){
-        ArrayList<Cliente> lista = new ArrayList<>();
-          
-        String sql;
-        boolean condicao = nome.isEmpty();
-    
-        if(condicao){
-        sql = "SELECT * FROM clientes ORDER BY id;";
-        }else{
-        sql = "SELECT * FROM cliente WHERE nome LIKE ? ORDER BY id;";
-        }
-        
+      public String listarClientes(String tipoBusca, String filtro, Cliente cliente){
+      String sql= "";
+      StringBuilder sb = new StringBuilder();
+      boolean usarNome = tipoBusca.equalsIgnoreCase("NOME");
+      boolean usarID = tipoBusca.equalsIgnoreCase("ID");
+      
+      
+      
+      if(usarNome){
+      
+         if(filtro == "Listar todos"){
+          sql = "SELECT * FROM clientes ORDER BY id;";
+         }else{
+          sql = "SELECT * FROM clientes WHERE nome LIKE ? ORDER BY id;";
+         }
+      
+      } else if(usarID){
+      sql = "SELECT * FROM clientes WHERE id = ?;";
+      }
+      
+      
+      
           try (Connection conn = BrothersDataBase.conexao();
                PreparedStatement ps = conn.prepareStatement(sql)){
               
-              if(!condicao){
-                  ps.setString(1, "%" + nome + "%");
-              }
-
+              if(filtro == "Listar filtrado"){
+                  ps.setString(1, "%" + cliente.getNome() + "%");
+              } else if(filtro == "Listar Id"){
+              ps.setInt(1, cliente.getId());
+              } 
               
           try (ResultSet rs = ps.executeQuery()){
               
-              Cliente cliente = new Cliente();
-              
               while(rs.next()){
-              cliente.setId(rs.getInt("id")); 
-              cliente.setNome(rs.getString("nome"));
-              cliente.setTelefone(rs.getString("telefone"));
-              cliente.setEmail(rs.getString("email"));
-              cliente.setDescricao(rs.getString("descricao"));
+              int id = rs.getInt("id");
+              String nome = rs.getString("nome");
+              String telefone = rs.getString("telefone");
+              String email = rs.getString("email");
+              String descricao = rs.getString("descricao");
               
-              
-              
+               sb.append("ID: " + id + " | NOME: " + nome +
+                       "\nTELEFONE: " + telefone + "\nEMAIL: " + email +
+                       "\nDESCRIÇÃO: " + descricao +"\n\n");
                                }
           }
                      
@@ -95,10 +122,7 @@ public class ClientesDao {
           return "NÃO FOI POSSÍVEL MANTER A CONEXÃO.";
           }
           
-          
-          
-          return sb.toString();
-      
+      return sb.toString();
       
       }
   
