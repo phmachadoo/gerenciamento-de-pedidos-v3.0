@@ -5,6 +5,7 @@ import gerenciamentopedidos.dao.ClientesDao;
 import gerenciamentopedidos.database.ClienteDataBase;
 import gerenciamentopedidos.model.Cliente;
 import gerenciamentopedidos.view.TelaClientes;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -15,7 +16,7 @@ public class ClientesService {
     
     public String cadastroClienteService(Cliente cliente){
         
-        if( cliente.getNome().trim().isEmpty() &&
+        if(cliente.getNome().trim().isEmpty() &&
               cliente.getTelefone().trim().isEmpty() &&
                 cliente.getEmail().trim().isEmpty() && 
                     cliente.getDescricao().trim().isEmpty()){
@@ -30,14 +31,41 @@ public class ClientesService {
        
         clienteDataBase.clientes();
         clienteDao.inserirClientes(cliente);
-        return "Nome: " + cliente.getNome() 
-              + "\nTelefone: "+ cliente.getTelefone() + "\nEmail: " + cliente.getEmail()
-              + "\nDescrição: " + cliente.getDescricao();  
+         return "NOME: " + cliente.getNome() 
+              + "\nTELEFONE: "+ cliente.getTelefone() + "\nEMAIL: " + cliente.getEmail()
+              + "\nDESCRIÇÃO: " + cliente.getDescricao(); 
         
        
     }
     
     
+    public String atualizarClienteService(Cliente cliente){
+    ArrayList condicao = new ArrayList<>();
+    
+     if(cliente.getNome().trim().isEmpty() &&
+              cliente.getTelefone().trim().isEmpty() &&
+                cliente.getEmail().trim().isEmpty() && 
+                    cliente.getDescricao().trim().isEmpty()){
+     throw new IllegalArgumentException("CAMPOS 'NOME', 'TELEFONE', 'EMAIL' E 'DESCRIÇÃO'\n"
+             + "NÃO PODEM SER VAZIOS.");
+     }
+    
+            condicao.add(cliente.getNome().trim().isEmpty());
+            condicao.add(cliente.getTelefone().trim().isEmpty());
+            condicao.add(cliente.getEmail().trim().isEmpty());
+            condicao.add(cliente.getDescricao().trim().isEmpty());
+     
+     
+     clienteDataBase.clientes();
+     clienteDao.atualizarCliente(condicao, cliente);
+     
+    return "ID: " + cliente.getId() +"NOME: " + cliente.getNome() 
+              + "\nTELEFONE: "+ cliente.getTelefone() + "\nEMAIL: " + cliente.getEmail()
+              + "\nDESCRIÇÃO: " + cliente.getDescricao();
+    }
+
+
+
     
     public String listarClienteService(Cliente cliente){
     String filtro;
@@ -54,35 +82,35 @@ public class ClientesService {
     
     }
     
-    
     public String removerClienteService(Cliente cliente){
         
     String resultado = "";
        
        clienteDataBase.clientes();
+      ;
        if(!clienteDao.listarClientes("ID", "Listar Id", cliente).isEmpty()){
            
            int resposta = JOptionPane.showConfirmDialog(
             null,
-            "Tem certeza que deseja remover o cliente?",
-            "Confirmação",
+            "TEM CERTEZA QUE DESEJA REMOVER O(A) CLIENTE?",
+            "CONFIRMAÇÃO",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE
         );
            
            if (resposta == JOptionPane.YES_OPTION) {
             clienteDao.removerClientes(cliente);
-            resultado = "Cliente removido com sucesso.";
+            resultado = "CLIENTE REMOVIDO COM SUCESSO.";
             
             } else if (resposta == JOptionPane.NO_OPTION){
             
-            resultado = "Não foi possível remover o cliente.";
+            resultado = "NÃO FOI POSSÍVEL REMOVER O(A) CLIENTE.";
             
             }
             
              
         } else {
-           resultado = "Id não encontrado.\nPor favor, tente novamente.";
+           resultado = "ID NÃO ENCONTRADO.\nPOR FAVOR, TENTE NOVAMENTE.";
        }
        
        return resultado;

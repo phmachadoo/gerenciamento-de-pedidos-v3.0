@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ClientesDao {
     
@@ -29,26 +30,54 @@ public class ClientesDao {
         }
     }
     
-    public void atualizarCliente(Cliente cliente){
-    String sql = "UPDATE cliente SET";
+    public boolean atualizarCliente(ArrayList<Boolean> condicao, Cliente cliente){
+    String sql = "UPDATE cliente SET ";
     
-    if(cliente.getNome() != null || !cliente.getNome().isEmpty()){
-        sql += "nome = ?";
-    }
+    String[] colunas = {"nome", "telefone", "email", "descricao"};
     
-    if(cliente.getTelefone() != null || !cliente.getTelefone().isEmpty()){
-        sql += ",telefone = ?";
-    }
-    
-    if(cliente.getEmail() == null || cliente.getEmail().isEmpty()){
-                    sql = ",email = ?";}
-    
-    if(cliente.getDescricao() == null || cliente.getDescricao().isEmpty()){
-                   sql = ",descricao = ?";
-    }
-    
-    
-    
+        for (int i = 0; i < condicao.size(); i++) {
+            
+            if(!condicao.get(i)){
+            sql += colunas[i] + " = ?, ";
+            }
+            
+        }
+            sql = sql.substring(0, sql.length() - 2);
+            sql += "WHERE id = ?;";
+            
+        try(Connection conn = BrothersDataBase.conexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            int contador = 0;
+            
+            
+            if(sql.contains("nome")){
+            ps.setString(contador++, cliente.getNome());
+            }
+            
+            if(sql.contains("telefone")){
+                ps.setString(contador++,cliente.getTelefone());
+                
+            }
+            
+            if(sql.contains("email")){
+                ps.setString(contador++,cliente.getEmail());
+            }
+
+            if(sql.contains("descricao")){
+                ps.setString(contador++, cliente.getDescricao());
+            }
+            
+            ps.setInt(contador++,cliente.getId());
+            
+            System.out.println(sql);
+            
+            int linhas = ps.executeUpdate();
+            return linhas>0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
             
             
     }
@@ -70,6 +99,8 @@ public class ClientesDao {
           return false;
       }
   }
+  
+  
   
       public String listarClientes(String tipoBusca, String filtro, Cliente cliente){
       String sql= "";
@@ -127,13 +158,6 @@ public class ClientesDao {
       }
   
   
-    
-    
-    
-    
-    
-    
-    
     
     
     

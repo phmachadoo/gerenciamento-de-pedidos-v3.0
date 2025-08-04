@@ -17,13 +17,6 @@ public class Cliente {
         this.telefone = telefone;
     }
     
-    public Cliente(String nome, String telefone,String email,String descricao) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.email = email;
-        this.telefone = telefone;
-    }
-    
     public Cliente() {
         this.totalPedidos = 0;
         this.nome = "";
