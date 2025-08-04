@@ -31,45 +31,43 @@ public class ClientesDao {
     }
     
     public boolean atualizarCliente(ArrayList<Boolean> condicao, Cliente cliente){
-    String sql = "UPDATE cliente SET ";
-    
+    ArrayList<String> valores = new ArrayList<>();
+    String sql = "UPDATE clientes SET ";
     String[] colunas = {"nome", "telefone", "email", "descricao"};
     
         for (int i = 0; i < condicao.size(); i++) {
             
             if(!condicao.get(i)){
-            sql += colunas[i] + " = ?, ";
+            sql += colunas[i] + " = ?,";
+            
+            switch(i){
+                case 0 -> valores.add(cliente.getNome());
+                case 1 -> valores.add(cliente.getTelefone());
+                case 2 -> valores.add(cliente.getEmail());
+                case 3 -> valores.add(cliente.getDescricao());
+            
+            }
+            
             }
             
         }
-            sql = sql.substring(0, sql.length() - 2);
-            sql += "WHERE id = ?;";
-            
+      
+            sql = sql.substring(0, sql.length() - 1);
+            sql += " WHERE id = ?;";
+             System.out.println(sql);
+             
         try(Connection conn = BrothersDataBase.conexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            int contador = 0;
             
+            int contador = 1;
             
-            if(sql.contains("nome")){
-            ps.setString(contador++, cliente.getNome());
-            }
-            
-            if(sql.contains("telefone")){
-                ps.setString(contador++,cliente.getTelefone());
-                
-            }
-            
-            if(sql.contains("email")){
-                ps.setString(contador++,cliente.getEmail());
-            }
-
-            if(sql.contains("descricao")){
-                ps.setString(contador++, cliente.getDescricao());
-            }
+           for(String valor : valores){
+           ps.setString(contador++, valor);
+           }
             
             ps.setInt(contador++,cliente.getId());
             
-            System.out.println(sql);
+           
             
             int linhas = ps.executeUpdate();
             return linhas>0;

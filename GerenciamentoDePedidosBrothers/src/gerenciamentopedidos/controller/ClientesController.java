@@ -29,7 +29,6 @@ public class ClientesController {
     
     
         try {
-            
             if(strId.isEmpty()){
             throw new NumberFormatException("CAMPO 'ID' NÃO PODE SER VAZIO.");
         }
