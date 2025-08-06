@@ -3,19 +3,21 @@ package gerenciamentopedidos.controller;
 
 import gerenciamentopedidos.model.Cliente;
 import gerenciamentopedidos.service.ClientesService;
+import gerenciamentopedidos.utils.StringUtils;
 
 public class ClientesController {
     
     ClientesService clienteService = new ClientesService();
-    
+    StringUtils sUtils = new StringUtils();
     
     public String cadastroClienteController(String nome, String telefone, String email, String descricao){
         try {
+            
              Cliente clientes = new Cliente();
-             clientes.setNome(nome);
+             clientes.setNome(sUtils.formatarTexto(nome));
              clientes.setTelefone(telefone);
              clientes.setEmail(email);
-             clientes.setDescricao(descricao);
+             clientes.setDescricao(sUtils.formatarTexto(descricao));
              return clienteService.cadastroClienteService(clientes);
             
         } catch (IllegalArgumentException e) {
@@ -36,10 +38,10 @@ public class ClientesController {
             Cliente clientes = new Cliente();
             int id = Integer.parseInt(strId);
             clientes.setId(id);
-            clientes.setNome(nome);
+            clientes.setNome(sUtils.formatarTexto(nome));
             clientes.setTelefone(telefone);
             clientes.setEmail(email);
-            clientes.setDescricao(descricao);
+            clientes.setDescricao(sUtils.formatarTexto(descricao));
             return clienteService.atualizarClienteService(clientes);
             
             
@@ -85,7 +87,7 @@ public class ClientesController {
             
             
         } catch (NumberFormatException e) {
-        return "DADOS INVÁLIDOS.\nACEITA-SE SOMENTE NÚMEROS.";
+        return "ERRO AO REMOVER O(A) CLIENTE:\n" + e.getMessage();
         }
     
     }

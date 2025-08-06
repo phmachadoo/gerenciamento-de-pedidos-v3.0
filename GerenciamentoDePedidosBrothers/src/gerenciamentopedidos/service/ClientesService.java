@@ -21,12 +21,19 @@ public class ClientesService {
                 cliente.getEmail().trim().isEmpty() && 
                     cliente.getDescricao().trim().isEmpty()){
             
-        throw new IllegalArgumentException("Campos 'NOME', 'TELEFONE', 'EMAIL'\n"
-                + "e 'DESCRIÇÃO' não podem ser vazios.");
+        throw new IllegalArgumentException("CAMPOS ''NOME'', ''TELEFONE'', ''EMAIL''\n"
+                + "E ''DESCRIÇÃO'' NÃO PODEM SER VAZIOS.");
         
-        } else if ( cliente.getTelefone().trim().isEmpty() && 
+        }   else if(cliente.getNome().trim().isEmpty()){
+        
+        throw new IllegalArgumentException("CAMPO ''NOME'' NÃO PODE SER VAZIO.");
+        } 
+        
+        
+        
+        else if (cliente.getTelefone().trim().isEmpty() && 
          cliente.getEmail().trim().isEmpty()) {
-        throw new IllegalArgumentException("Campos 'TELEFONE' e 'EMAIL'\nnão podem ser vazios.");
+        throw new IllegalArgumentException("CAMPOS ''TELEFONE'' E ''EMAIL''\nNÃO PODEM SER VAZIOS.");
         }
        
         clienteDataBase.clientes();
@@ -46,7 +53,7 @@ public class ClientesService {
               cliente.getTelefone().trim().isEmpty() &&
                 cliente.getEmail().trim().isEmpty() && 
                     cliente.getDescricao().trim().isEmpty()){
-     throw new IllegalArgumentException("CAMPOS 'NOME', 'TELEFONE', 'EMAIL' E 'DESCRIÇÃO'\n"
+     throw new IllegalArgumentException("CAMPOS ''NOME'', ''TELEFONE'', ''EMAIL'' E ''DESCRIÇÃO''\n"
              + "NÃO PODEM SER VAZIOS.");
      }
     
@@ -59,7 +66,7 @@ public class ClientesService {
      clienteDataBase.clientes();
      clienteDao.atualizarCliente(condicao, cliente);
      
-    return "ID: " + cliente.getId() +"NOME: " + cliente.getNome() 
+    return "ID: " + cliente.getId() +" | NOME: " + cliente.getNome() 
               + "\nTELEFONE: "+ cliente.getTelefone() + "\nEMAIL: " + cliente.getEmail()
               + "\nDESCRIÇÃO: " + cliente.getDescricao();
     }
@@ -87,7 +94,6 @@ public class ClientesService {
     String resultado = "";
        
        clienteDataBase.clientes();
-      ;
        if(!clienteDao.listarClientes("ID", "Listar Id", cliente).isEmpty()){
            
            int resposta = JOptionPane.showConfirmDialog(
