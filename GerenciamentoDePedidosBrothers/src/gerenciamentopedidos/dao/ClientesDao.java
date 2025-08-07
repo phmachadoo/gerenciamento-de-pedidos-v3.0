@@ -54,7 +54,6 @@ public class ClientesDao {
       
             sql = sql.substring(0, sql.length() - 1);
             sql += " WHERE id = ?;";
-             System.out.println(sql);
              
         try(Connection conn = BrothersDataBase.conexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -105,11 +104,9 @@ public class ClientesDao {
       StringBuilder sb = new StringBuilder();
       boolean usarNome = tipoBusca.equalsIgnoreCase("NOME");
       boolean usarID = tipoBusca.equalsIgnoreCase("ID");
-      
-      
+
       
       if(usarNome){
-      
          if(filtro == "Listar todos"){
           sql = "SELECT * FROM clientes ORDER BY id;";
          }else{
@@ -139,10 +136,11 @@ public class ClientesDao {
               String telefone = rs.getString("telefone");
               String email = rs.getString("email");
               String descricao = rs.getString("descricao");
+              int totPedidos = rs.getInt("total_pedidos");
               
                sb.append("ID: " + id + " | NOME: " + nome +
                        "\nTELEFONE: " + telefone + "\nEMAIL: " + email +
-                       "\nDESCRIÇÃO: " + descricao +"\n\n");
+                       "\nDESCRIÇÃO: " + descricao +"\nPEDIDOS FEITOS: "+ totPedidos+"\n\n");
                                }
           }
                      
