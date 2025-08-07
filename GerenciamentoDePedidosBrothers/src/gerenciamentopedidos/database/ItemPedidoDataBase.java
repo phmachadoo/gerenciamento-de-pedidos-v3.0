@@ -4,17 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ProdutoDataBase {
+public class ItemPedidoDataBase {
     
-    public boolean produtos(){
-    String sql = "CREATE TABLE IF NOT EXISTS produto("
+    public boolean itemPedido(){
+    String sql = "CREATE TABLE IF NOT EXISTS item_pedido("
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "id_pedido INTEGER NOT NULL,"
+            + "id_produtos INTEGER NOT NULL,"
             + "nome_produto TEXT NOT NULL,"
             + "descricao TEXT DEFAULT '',"
             + "quantidade INTEGER NOT NULL,"
             + "valor_unitario REAL NOT NULL,"
-            + "FOREIGN KEY(id_pedido) REFERENCES pedido(id)"
+            + "subtotal REAL NOT NULL,"
+            + "FOREIGN KEY(id_pedido) REFERENCES pedido(id),"
+            + "FOREIGN KEY(id_produtos) REFERENCES produtos(id)"
             + ");";
     
         try (Connection conn = BrothersDataBase.conexao();

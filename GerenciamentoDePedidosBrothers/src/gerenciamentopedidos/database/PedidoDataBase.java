@@ -10,9 +10,10 @@ public class PedidoDataBase {
     public boolean pedido(){
     String sql = "CREATE TABLE IF NOT EXISTS pedidos("
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "id_cliente INTERGER NOT NULL,"
+            + "id_cliente INTEGER NOT NULL,"
             + "data TEXT NOT NULL,"
             + "status TEXT NOT NULL,"
+            + "total REAL,"
             + "FOREIGN KEY (id_cliente) REFERENCES cliente(id)"
             + ");";
     
