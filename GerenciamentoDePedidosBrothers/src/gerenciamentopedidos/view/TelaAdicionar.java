@@ -5,11 +5,15 @@
 package gerenciamentopedidos.view;
 
 import controlefinanceiro.view.ControleFinanceiroTela;
+import gerenciamentopedidos.controller.AdicionarController;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -17,6 +21,8 @@ import java.awt.event.MouseMotionAdapter;
  */
 public class TelaAdicionar extends javax.swing.JFrame {
      private Point initialClick;
+   ArrayList<String> test = new ArrayList<>();
+   AdicionarController adController = new AdicionarController();
    
     public TelaAdicionar() {
         initComponents();
@@ -62,11 +68,18 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 setLocation(X, Y);
             }
         });
+        test.add("");
+        test.add("Maçã");
+        test.add("banana");
+        test.add("pera");
+        test.add("melancia");
+        test.add("melão");
         
-        
-        
-        
-        
+        for (String string : test) {
+             jComboBox1.addItem(string);
+        }
+       
+        jComboBox1.setEditable(true);
     }
 
     /**
@@ -102,8 +115,8 @@ public class TelaAdicionar extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtDescricaoCliente = new javax.swing.JTextField();
-        txtClienteFixo = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -361,17 +374,16 @@ public class TelaAdicionar extends javax.swing.JFrame {
                             .addComponent(txtDescricaoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))))
                 .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel14))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                        .addComponent(txtClienteFixo)))
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -382,7 +394,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(txtClienteFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -669,14 +681,29 @@ public class TelaAdicionar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        String pesquisarCliente = txtClienteFixo.getText();
-        String nome = txtNome.getText();
+        String clienteFixo = (String)jComboBox1.getEditor().getItem();
+       /* String nome = txtNome.getText();
         String email = txtEmail.getText();
         String telefone = txtTelefone.getText();
-        String descricao = txtDescricaoCliente.getText();
+        String descricao = txtDescricaoCliente.getText();*/
         
+        jComboBox1.removeAllItems();
+        for (String string : test) {
+            if(string.toLowerCase().contains(clienteFixo.toLowerCase())){
+            jComboBox1.addItem(string);
+            
+            if(string == "Maçã"){
+            txtNome.setText("Pedro");
+            }
+            
+            
+            
+            }
+        }
         
+        //adController.adicionarClienteController(clienteFixo, nome, email, telefone, descricao );
 
+        
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -734,6 +761,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
     private javax.swing.JButton btnX;
     private javax.swing.JButton btnZerar;
     private com.toedter.calendar.JDateChooser calendario;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -757,7 +785,6 @@ public class TelaAdicionar extends javax.swing.JFrame {
     private javax.swing.JPanel titleBar;
     private javax.swing.JPanel titleBar2;
     private javax.swing.JTextArea txtArea;
-    private javax.swing.JTextField txtClienteFixo;
     private javax.swing.JTextField txtDescricaoCliente;
     private javax.swing.JTextField txtDescricaoServico;
     private javax.swing.JTextField txtEmail;
