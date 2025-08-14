@@ -3,11 +3,29 @@ package gerenciamentopedidos.controller;
 
 import gerenciamentopedidos.model.Cliente;
 import gerenciamentopedidos.service.AdicionarService;
+import java.util.ArrayList;
 
 public class AdicionarController {
     
+    AdicionarService adService = new AdicionarService();
     
-    public String adicionarClienteController(String clienteFixo, String nome, String email, String telefone, String descricao){
+    
+    
+    public ArrayList<Cliente> comboBoxClientesController(ArrayList<Cliente> listaClientesController){
+    Cliente cliente = new Cliente();
+    listaClientesController.add(cliente);
+    adService.comboBoxClientesService(cliente,listaClientesController);
+    
+    return listaClientesController;
+    }
+    
+    
+    
+    
+    
+    
+    
+    public String pesquisarClienteController(String clienteFixo, String nome, String email, String telefone, String descricao){
     
         AdicionarService adService = new AdicionarService();
         

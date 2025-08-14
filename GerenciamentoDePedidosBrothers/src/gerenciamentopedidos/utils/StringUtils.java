@@ -1,5 +1,6 @@
 package gerenciamentopedidos.utils;
 
+
 public class StringUtils {
     
     public String formatarTexto(String texto){
@@ -17,7 +18,6 @@ public class StringUtils {
     return sb.toString();
     
     }
-    
     
     
     

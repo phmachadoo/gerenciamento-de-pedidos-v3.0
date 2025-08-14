@@ -6,6 +6,7 @@ package gerenciamentopedidos.view;
 
 import controlefinanceiro.view.ControleFinanceiroTela;
 import gerenciamentopedidos.controller.AdicionarController;
+import gerenciamentopedidos.model.Cliente;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -21,7 +22,7 @@ import javax.swing.event.DocumentListener;
  */
 public class TelaAdicionar extends javax.swing.JFrame {
      private Point initialClick;
-   ArrayList<String> test = new ArrayList<>();
+   ArrayList<Cliente> lista = new ArrayList<>();
    AdicionarController adController = new AdicionarController();
    
     public TelaAdicionar() {
@@ -68,18 +69,36 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 setLocation(X, Y);
             }
         });
-        test.add("");
-        test.add("Maçã");
-        test.add("banana");
-        test.add("pera");
-        test.add("melancia");
-        test.add("melão");
         
-        for (String string : test) {
-             jComboBox1.addItem(string);
-        }
+        comboBox.setEditable(true);
+         adController.comboBoxClientesController(lista);
+          for (int i = 0; i < lista.size(); i++) {
+            comboBox.addItem(lista.get(i).getNome()); }  
+
+
+
+        comboBox.addActionListener(e ->{
+        
        
-        jComboBox1.setEditable(true);
+       
+            for (int i = 0; i < lista.size(); i++) {
+            
+                if(comboBox.getSelectedItem().equals(lista.get(i).getNome())){
+            txtNome.setText(lista.get(i).getNome());
+            txtEmail.setText(lista.get(i).getEmail());
+            txtTelefone.setText(lista.get(i).getTelefone());
+            txtDescricaoCliente.setText(lista.get(i).getDescricao());
+                
+            }}
+            
+        
+        
+        
+        });
+        
+        
+        
+        
     }
 
     /**
@@ -116,7 +135,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txtDescricaoCliente = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBox = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -383,7 +402,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel14))
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -394,7 +413,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -681,24 +700,15 @@ public class TelaAdicionar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        String clienteFixo = (String)jComboBox1.getEditor().getItem();
-       /* String nome = txtNome.getText();
-        String email = txtEmail.getText();
-        String telefone = txtTelefone.getText();
-        String descricao = txtDescricaoCliente.getText();*/
+        String clienteFixo = (String)comboBox.getEditor().getItem();
         
-        jComboBox1.removeAllItems();
-        for (String string : test) {
-            if(string.toLowerCase().contains(clienteFixo.toLowerCase())){
-            jComboBox1.addItem(string);
-            
-            if(string == "Maçã"){
-            txtNome.setText("Pedro");
+        comboBox.removeAllItems();
+    for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getNome().toLowerCase().contains(clienteFixo.toLowerCase())){
+                comboBox.addItem(lista.get(i).getNome());
             }
+                
             
-            
-            
-            }
         }
         
         //adController.adicionarClienteController(clienteFixo, nome, email, telefone, descricao );
@@ -761,7 +771,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
     private javax.swing.JButton btnX;
     private javax.swing.JButton btnZerar;
     private com.toedter.calendar.JDateChooser calendario;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

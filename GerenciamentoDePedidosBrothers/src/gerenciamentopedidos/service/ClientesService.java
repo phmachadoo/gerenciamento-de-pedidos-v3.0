@@ -77,6 +77,8 @@ public class ClientesService {
     public String listarClienteService(Cliente cliente){
     String filtro;
     boolean condicao = cliente.getNome().isEmpty(); 
+    ArrayList<Cliente> listaClientes = new ArrayList<>();
+    StringBuilder sb = new StringBuilder();
     
     if(condicao){
     filtro = "Listar todos";
@@ -85,16 +87,25 @@ public class ClientesService {
     }
         
     clienteDataBase.clientes();
-    return clienteDao.listarClientes("NOME", filtro, cliente);
+    clienteDao.listarClientes("NOME", filtro, cliente,listaClientes);
+    
+        for (int i = 0; i < listaClientes.size(); i++) {
+            sb.append("ID: " + listaClientes.get(i).getId() + " | NOME: " + listaClientes.get(i).getNome() 
+              + "\nTELEFONE: "+ listaClientes.get(i).getTelefone() + "\nEMAIL: " + listaClientes.get(i).getEmail()
+              + "\nDESCRIÇÃO: " + listaClientes.get(i).getDescricao()+ "\n\n") ;
+        }
+    
+    return sb.toString();
     
     }
     
     public String removerClienteService(Cliente cliente){
         
     String resultado = "";
-       
+    ArrayList<Cliente> listaClientes = new ArrayList<>();
+    
        clienteDataBase.clientes();
-       if(!clienteDao.listarClientes("ID", "Listar Id", cliente).isEmpty()){
+       if(!clienteDao.listarClientes("ID", "Listar Id", cliente,listaClientes).isEmpty()){
            
            int resposta = JOptionPane.showConfirmDialog(
             null,

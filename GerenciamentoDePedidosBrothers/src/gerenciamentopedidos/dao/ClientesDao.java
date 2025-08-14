@@ -99,12 +99,11 @@ public class ClientesDao {
   
   
   
-      public String listarClientes(String tipoBusca, String filtro, Cliente cliente){
+      public ArrayList<Cliente> listarClientes(String tipoBusca, String filtro, Cliente cliente, ArrayList<Cliente> listaClientes){
       String sql= "";
-      StringBuilder sb = new StringBuilder();
       boolean usarNome = tipoBusca.equalsIgnoreCase("NOME");
       boolean usarID = tipoBusca.equalsIgnoreCase("ID");
-
+      
       
       if(usarNome){
          if(filtro == "Listar todos"){
@@ -129,27 +128,24 @@ public class ClientesDao {
               } 
               
           try (ResultSet rs = ps.executeQuery()){
-              
               while(rs.next()){
-              int id = rs.getInt("id");
-              String nome = rs.getString("nome");
-              String telefone = rs.getString("telefone");
-              String email = rs.getString("email");
-              String descricao = rs.getString("descricao");
-              int totPedidos = rs.getInt("total_pedidos");
-              
-               sb.append("ID: " + id + " | NOME: " + nome +
-                       "\nTELEFONE: " + telefone + "\nEMAIL: " + email +
-                       "\nDESCRIÇÃO: " + descricao +"\nPEDIDOS FEITOS: "+ totPedidos+"\n\n");
+              Cliente objCliente = new Cliente();    
+              objCliente.setId(rs.getInt("id"));
+              objCliente.setNome(rs.getString("nome"));
+              objCliente.setTelefone(rs.getString("telefone"));
+              objCliente.setEmail(rs.getString("email"));
+              objCliente.setDescricao(rs.getString("descricao"));
+              objCliente.setTotalPedidos(rs.getInt("total_pedidos"));
+
+              listaClientes.add(objCliente);
                                }
           }
                      
           } catch (SQLException e) {
           e.printStackTrace();
-          return "NÃO FOI POSSÍVEL MANTER A CONEXÃO.";
           }
           
-      return sb.toString();
+      return listaClientes;
       
       }
   
