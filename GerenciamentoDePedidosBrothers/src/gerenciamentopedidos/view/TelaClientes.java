@@ -81,12 +81,13 @@ public class TelaClientes extends javax.swing.JFrame {
         titleBar2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        btnClientes = new javax.swing.JButton();
+        btnProdutos = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         btnControleFinan = new javax.swing.JButton();
-        btnClientes = new javax.swing.JButton();
         btnX = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -163,6 +164,31 @@ public class TelaClientes extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        btnClientes.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnClientes.setText("CLIENTES");
+        btnClientes.setBorderPainted(false);
+        btnClientes.setContentAreaFilled(false);
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
+
+        btnProdutos.setBackground(new java.awt.Color(0, 0, 51));
+        btnProdutos.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        btnProdutos.setText("PRODUTOS");
+        btnProdutos.setBorderPainted(false);
+        btnProdutos.setContentAreaFilled(false);
+        btnProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutosActionPerformed(evt);
+            }
+        });
+
         btnAdicionar.setBackground(new java.awt.Color(0, 0, 102));
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnAdicionar.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,51 +254,46 @@ public class TelaClientes extends javax.swing.JFrame {
             }
         });
 
-        btnClientes.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnClientes.setText("CLIENTES");
-        btnClientes.setBorderPainted(false);
-        btnClientes.setContentAreaFilled(false);
-        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout titleBar2Layout = new javax.swing.GroupLayout(titleBar2);
         titleBar2.setLayout(titleBar2Layout);
         titleBar2Layout.setHorizontalGroup(
             titleBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnControleFinan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleBar2Layout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
-            .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(titleBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(btnProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(btnRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(btnControleFinan, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
         );
         titleBar2Layout.setVerticalGroup(
             titleBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleBar2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnControleFinan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(titleBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(titleBar2Layout.createSequentialGroup()
+                    .addGap(172, 172, 172)
+                    .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnControleFinan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(173, Short.MAX_VALUE)))
         );
 
         btnX.setBackground(new java.awt.Color(204, 0, 0));
@@ -727,16 +748,6 @@ public class TelaClientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        new TelaAdicionar().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAdicionarActionPerformed
-
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        new TelaRemover().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnRemoverActionPerformed
-
     private void btnXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnXActionPerformed
@@ -744,25 +755,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setState(ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
-
-    private void btnControleFinanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControleFinanActionPerformed
-        new ControleFinanceiroTela().setVisible(true);
-    }//GEN-LAST:event_btnControleFinanActionPerformed
-
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        new TelaAtualizar().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAtualizarActionPerformed
-
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        new TelaListar().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnListarActionPerformed
-
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-         new TelaClientes().setVisible(true);
-         dispose();
-    }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
         String nome = txtNomeCadastro.getText();
@@ -806,6 +798,40 @@ public class TelaClientes extends javax.swing.JFrame {
         txtAreaRemover.setText(clientesController.removerClienteController(id));
         txtIDRemover.setText("");
     }//GEN-LAST:event_btnRemoverClienteActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        new TelaClientes().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        new TelaProdutos().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnProdutosActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        new TelaAdicionar().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        new TelaRemover().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        new TelaAtualizar().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        new TelaListar().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnControleFinanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControleFinanActionPerformed
+        new ControleFinanceiroTela().setVisible(true);
+    }//GEN-LAST:event_btnControleFinanActionPerformed
 
     
     public static void main(String args[]) {
@@ -851,6 +877,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnListarCliente;
     private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnRemoverCliente;
     private javax.swing.JButton btnX;

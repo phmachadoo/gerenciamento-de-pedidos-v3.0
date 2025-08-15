@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentListener;
 
@@ -70,20 +71,26 @@ public class TelaAdicionar extends javax.swing.JFrame {
             }
         });
         
-        comboBox.setEditable(true);
-         adController.comboBoxClientesController(lista);
+        comboBoxClientes.setEditable(true);
+        adController.comboBoxClientesController(lista);
+         lista.sort(Comparator.comparing(Cliente::getNome));
           for (int i = 0; i < lista.size(); i++) {
-            comboBox.addItem(lista.get(i).getNome()); }  
+            comboBoxClientes.addItem(lista.get(i).getNome()); }  
 
 
 
-        comboBox.addActionListener(e ->{
+        comboBoxClientes.addActionListener(e ->{
         
+       Object itemSelecionado = comboBoxClientes.getSelectedItem();
+       if(itemSelecionado == null){
+       return;
+       }
        
+       String nomeSelecionado = itemSelecionado.toString();
        
             for (int i = 0; i < lista.size(); i++) {
             
-                if(comboBox.getSelectedItem().equals(lista.get(i).getNome())){
+                if(nomeSelecionado.equals(lista.get(i).getNome())){
             txtNome.setText(lista.get(i).getNome());
             txtEmail.setText(lista.get(i).getEmail());
             txtTelefone.setText(lista.get(i).getTelefone());
@@ -120,6 +127,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
         btnListar = new javax.swing.JButton();
         btnControleFinan = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
+        btnProdutos = new javax.swing.JButton();
         btnX = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -135,19 +143,19 @@ public class TelaAdicionar extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txtDescricaoCliente = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        comboBox = new javax.swing.JComboBox<>();
+        comboBoxClientes = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtTipoServico = new javax.swing.JTextField();
         txtDescricaoServico = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         calendario = new com.toedter.calendar.JDateChooser();
+        comboBoxServico = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
@@ -251,7 +259,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
             }
         });
 
-        btnClientes.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnClientes.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnClientes.setText("CLIENTES");
         btnClientes.setBorderPainted(false);
@@ -260,6 +268,18 @@ public class TelaAdicionar extends javax.swing.JFrame {
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientesActionPerformed(evt);
+            }
+        });
+
+        btnProdutos.setBackground(new java.awt.Color(0, 0, 51));
+        btnProdutos.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        btnProdutos.setText("PRODUTOS");
+        btnProdutos.setBorderPainted(false);
+        btnProdutos.setContentAreaFilled(false);
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutosActionPerformed(evt);
             }
         });
 
@@ -277,24 +297,27 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
+            .addComponent(btnProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         titleBar2Layout.setVerticalGroup(
             titleBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleBar2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnControleFinan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnControleFinan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -364,6 +387,8 @@ public class TelaAdicionar extends javax.swing.JFrame {
             }
         });
 
+        comboBoxClientes.setForeground(new java.awt.Color(0, 0, 102));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -402,7 +427,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel14))
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboBoxClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -413,7 +438,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnPesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -469,6 +494,8 @@ public class TelaAdicionar extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 102));
         jLabel11.setText("DATA:");
 
+        comboBoxServico.setForeground(new java.awt.Color(0, 0, 102));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -481,29 +508,30 @@ public class TelaAdicionar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPreco))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(44, Short.MAX_VALUE)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(calendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(calendario, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(81, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDescricaoServico))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel4)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDescricaoServico)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtTipoServico))))
+                            .addComponent(comboBoxServico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -513,8 +541,8 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTipoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(comboBoxServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -611,7 +639,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                 .addGroup(titleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnX, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(titleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -632,7 +660,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                     .addGroup(titleBarLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -700,16 +728,16 @@ public class TelaAdicionar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        String clienteFixo = (String)comboBox.getEditor().getItem();
+       String clienteFixo = comboBoxClientes.getEditor().getItem().toString();
         
-        comboBox.removeAllItems();
-    for (int i = 0; i < lista.size(); i++) {
+        comboBoxClientes.removeAllItems();
+        for (int i = 0; i < lista.size(); i++) {
             if(lista.get(i).getNome().toLowerCase().contains(clienteFixo.toLowerCase())){
-                comboBox.addItem(lista.get(i).getNome());
+                lista.sort(Comparator.comparing(Cliente::getNome));
+                comboBoxClientes.addItem(lista.get(i).getNome());
             }
-                
-            
         }
+        
         
         //adController.adicionarClienteController(clienteFixo, nome, email, telefone, descricao );
 
@@ -720,6 +748,12 @@ public class TelaAdicionar extends javax.swing.JFrame {
     private void btnZerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZerarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnZerarActionPerformed
+
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        new TelaProdutos().setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_btnProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -767,11 +801,13 @@ public class TelaAdicionar extends javax.swing.JFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnX;
     private javax.swing.JButton btnZerar;
     private com.toedter.calendar.JDateChooser calendario;
-    private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JComboBox<String> comboBoxClientes;
+    private javax.swing.JComboBox<String> comboBoxServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -802,6 +838,5 @@ public class TelaAdicionar extends javax.swing.JFrame {
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtTelefone;
-    private javax.swing.JTextField txtTipoServico;
     // End of variables declaration//GEN-END:variables
 }
