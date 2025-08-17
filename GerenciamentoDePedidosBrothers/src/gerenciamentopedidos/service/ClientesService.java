@@ -4,7 +4,6 @@ package gerenciamentopedidos.service;
 import gerenciamentopedidos.dao.ClientesDao;
 import gerenciamentopedidos.database.ClienteDataBase;
 import gerenciamentopedidos.model.Cliente;
-import gerenciamentopedidos.view.TelaClientes;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

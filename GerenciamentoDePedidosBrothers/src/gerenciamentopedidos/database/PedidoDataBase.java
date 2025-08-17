@@ -3,11 +3,12 @@ package gerenciamentopedidos.database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 
 public class PedidoDataBase {
     
-    public boolean pedido(){
+    public static boolean pedido(){
     String sql = "CREATE TABLE IF NOT EXISTS pedidos("
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "id_cliente INTEGER NOT NULL,"
@@ -26,7 +27,7 @@ public class PedidoDataBase {
             
         } catch (SQLException e) {
         e.printStackTrace();
-        System.out.println("Não foi possível criar a tabela. Motivo: "+ e.getMessage());
+        JOptionPane.showMessageDialog(null,"Não foi possivel criar a tabela clientes. Motivo: " + e.getMessage());
         return false;
         }
     

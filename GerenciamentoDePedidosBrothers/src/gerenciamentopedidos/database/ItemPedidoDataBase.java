@@ -14,7 +14,6 @@ public class ItemPedidoDataBase {
             + "nome_produto TEXT NOT NULL,"
             + "descricao TEXT DEFAULT '',"
             + "quantidade INTEGER NOT NULL,"
-            + "valor_unitario REAL NOT NULL,"
             + "subtotal REAL NOT NULL,"
             + "FOREIGN KEY(id_pedido) REFERENCES pedido(id),"
             + "FOREIGN KEY(id_produtos) REFERENCES produtos(id)"

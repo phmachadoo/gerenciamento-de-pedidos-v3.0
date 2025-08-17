@@ -34,6 +34,9 @@ public class ClientesController {
             if(strId.isEmpty()){
             throw new NumberFormatException("CAMPO 'ID' NÃO PODE SER VAZIO.");
         }
+            if (!strId.matches("\\d+")) {
+            throw new IllegalArgumentException("CAMPO 'ID' DEVE CONTER\nSOMENTE NÚMEROS.");
+        }
             
             Cliente clientes = new Cliente();
             int id = Integer.parseInt(strId);

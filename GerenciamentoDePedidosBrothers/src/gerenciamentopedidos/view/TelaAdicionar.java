@@ -77,8 +77,6 @@ public class TelaAdicionar extends javax.swing.JFrame {
           for (int i = 0; i < lista.size(); i++) {
             comboBoxClientes.addItem(lista.get(i).getNome()); }  
 
-
-
         comboBoxClientes.addActionListener(e ->{
         
        Object itemSelecionado = comboBoxClientes.getSelectedItem();
@@ -96,13 +94,9 @@ public class TelaAdicionar extends javax.swing.JFrame {
             txtTelefone.setText(lista.get(i).getTelefone());
             txtDescricaoCliente.setText(lista.get(i).getDescricao());
                 
-            }}
-            
+            }}});
         
-        
-        
-        });
-        
+        comboBoxServico.setEditable(true);
         
         
         
@@ -277,6 +271,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
         btnProdutos.setText("PRODUTOS");
         btnProdutos.setBorderPainted(false);
         btnProdutos.setContentAreaFilled(false);
+        btnProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProdutosActionPerformed(evt);
@@ -516,7 +511,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()

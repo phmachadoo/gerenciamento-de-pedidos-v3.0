@@ -7,7 +7,7 @@ import java.util.List;
 public class Pedido {
     private int id;
     private Cliente cliente;
-    private List<Produto> carrinho = new ArrayList<>();
+    private List<ItemPedido> carrinho = new ArrayList<>();
     private String status;
     private double valorTotal;
     private Date data;

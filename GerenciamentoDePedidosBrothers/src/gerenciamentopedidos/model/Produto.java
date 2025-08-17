@@ -1,39 +1,36 @@
 
 package gerenciamentopedidos.model;
 
-
 public class Produto {
     private int id;
-    private String nomeProduto, descricao;
-    private int quantidade;
+    private String nome, descricao;
     private double preco;
-
-    public Produto(int id, String nomeProduto, String descricao, int quantidade, double preco) {
-        this.id = id;
-        this.nomeProduto = nomeProduto;
-        this.descricao = descricao;
-        this.quantidade = quantidade;
-        this.preco = preco;
-    }
 
     public Produto() {
     }
 
-
-    public String getNomeProduto() {
-        return nomeProduto;
+    public int getId() {
+        return id;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
-    
-    public int getQuantidade() {
-        return quantidade;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public double getPreco() {
@@ -43,6 +40,10 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+    
+    
+    
+    
     
     
 }
