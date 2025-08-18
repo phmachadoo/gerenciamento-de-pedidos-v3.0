@@ -4,10 +4,13 @@
  */
 package gerenciamentopedidos.dao;
 import gerenciamentopedidos.database.BrothersDataBase;
+import gerenciamentopedidos.model.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import gerenciamentopedidos.model.Produto;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ProdutoDao {
     
@@ -30,6 +33,59 @@ public class ProdutoDao {
         }
     
     }
+    
+    
+    public ArrayList<Produto> listarProduto(String tipoBusca, String filtro,
+            Produto produto, ArrayList<Produto> listaProdutos){
+        
+        String sql= "";
+      boolean usarNome = tipoBusca.equalsIgnoreCase("NOME");
+      boolean usarID = tipoBusca.equalsIgnoreCase("ID");
+      
+      
+      if(usarNome){
+         if(filtro == "Listar todos"){
+          sql = "SELECT * FROM produto ORDER BY id;";
+         }else{
+          sql = "SELECT * FROM produto WHERE nome LIKE ? ORDER BY id;";
+         }
+      
+      } else if(usarID){
+      sql = "SELECT * FROM produto WHERE id = ?;";
+      }
+      
+       try (Connection conn = BrothersDataBase.conexao();
+               PreparedStatement ps = conn.prepareStatement(sql)){
+              
+              if(filtro == "Listar filtrado"){
+                  ps.setString(1, "%" + produto.getNome() + "%");
+              } else if(filtro == "Listar Id"){
+              ps.setInt(1, produto.getId());
+              } 
+              
+          try (ResultSet rs = ps.executeQuery()){
+              while(rs.next()){
+              Produto objProduto = new Produto();    
+              objProduto.setId(rs.getInt("id"));
+              objProduto.setNome(rs.getString("nome"));
+              objProduto.setDescricao(rs.getString("descricao"));
+              objProduto.setPreco(rs.getDouble("preco"));
+
+              listaProdutos.add(objProduto);
+                               }
+          }
+                     
+          } catch (SQLException e) {
+          e.printStackTrace();
+          }
+          
+      return listaProdutos;
+      
+      
+        
+    
+    }
+    
     
     
     

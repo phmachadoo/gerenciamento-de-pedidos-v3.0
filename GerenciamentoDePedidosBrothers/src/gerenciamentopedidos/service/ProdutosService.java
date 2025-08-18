@@ -7,6 +7,7 @@ package gerenciamentopedidos.service;
 import gerenciamentopedidos.dao.ProdutoDao;
 import gerenciamentopedidos.database.ProdutoDataBase;
 import gerenciamentopedidos.model.Produto;
+import java.util.ArrayList;
 
 public class ProdutosService {
 ProdutoDataBase produtoDataBase = new ProdutoDataBase();
@@ -27,5 +28,36 @@ public String cadastroProdutoService(Produto produto){
 
 }
 
+
+
+
+
     
+public String listarProdutoService(Produto produto){
+String filtro;
+boolean condicao = produto.getNome().trim().isEmpty();
+ArrayList<Produto> listaProduto = new ArrayList<>();
+StringBuilder sb = new StringBuilder();
+
+    if(condicao){
+    filtro = "Listar todos";
+    }else{
+    filtro = "Listar filtrado";
+    }
+
+    produtoDataBase.produto();
+    produtoDao.listarProduto("NOME",filtro,produto,listaProduto);
+
+    for (int i = 0; i < listaProduto.size(); i++) {
+        sb.append("ID: " + listaProduto.get(i).getId()+ " | NOME: " + listaProduto.get(i).getNome()+
+                "\nDESCRIÇÃO: " + listaProduto.get(i).getDescricao() +
+                "\nPREÇO: " + listaProduto.get(i).getPreco() + "\n\n"
+                );
+    }
+    
+    return sb.toString();
+
+}
+
+
 }
