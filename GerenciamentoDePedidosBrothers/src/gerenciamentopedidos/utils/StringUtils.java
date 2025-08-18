@@ -8,7 +8,7 @@ public class StringUtils {
     boolean quebraLinha = false;
         for (int i = 0; i < texto.length(); i++) {
             sb.append(texto.charAt(i));
-            if(!quebraLinha && i>18 && texto.charAt(i) == ' '){
+            if(!quebraLinha && i>25 && texto.charAt(i) == ' '){
             sb.append("\n");
             quebraLinha = true;
             continue;    

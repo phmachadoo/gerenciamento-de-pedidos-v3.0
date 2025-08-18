@@ -48,13 +48,7 @@ public class ClientesService {
     public String atualizarClienteService(Cliente cliente){
     ArrayList condicao = new ArrayList<>();
     
-     if(cliente.getNome().trim().isEmpty() &&
-              cliente.getTelefone().trim().isEmpty() &&
-                cliente.getEmail().trim().isEmpty() && 
-                    cliente.getDescricao().trim().isEmpty()){
-     throw new IllegalArgumentException("CAMPOS ''NOME'', ''TELEFONE'', ''EMAIL'' E ''DESCRIÇÃO''\n"
-             + "NÃO PODEM SER VAZIOS.");
-     }
+     
     
             condicao.add(cliente.getNome().trim().isEmpty());
             condicao.add(cliente.getTelefone().trim().isEmpty());

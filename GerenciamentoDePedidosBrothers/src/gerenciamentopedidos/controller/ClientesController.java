@@ -28,14 +28,18 @@ public class ClientesController {
     
     
     public String atualizarClienteController(String strId, String nome, String telefone, String email, String descricao){
-    
-    
         try {
+            
+            if(nome.trim().isEmpty() &&
+              telefone.trim().isEmpty() &&
+                email.trim().isEmpty() && 
+                    descricao.trim().isEmpty()){
+            throw new IllegalArgumentException(sUtils.formatarTexto("CAMPOS ''NOME'', ''TELEFONE'', ''EMAIL'' OU ''DESCRIÇÃO''"
+             + " NÃO PODEM SER VAZIOS."));
+     }
+            
             if(strId.isEmpty()){
-            throw new NumberFormatException("CAMPO 'ID' NÃO PODE SER VAZIO.");
-        }
-            if (!strId.matches("\\d+")) {
-            throw new IllegalArgumentException("CAMPO 'ID' DEVE CONTER\nSOMENTE NÚMEROS.");
+            throw new NumberFormatException(sUtils.formatarTexto("CAMPO ''ID'' NÃO PODE SER VAZIO."));
         }
             
             Cliente clientes = new Cliente();

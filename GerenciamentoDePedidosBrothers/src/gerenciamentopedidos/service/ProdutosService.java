@@ -7,16 +7,16 @@ package gerenciamentopedidos.service;
 import gerenciamentopedidos.dao.ProdutoDao;
 import gerenciamentopedidos.database.ProdutoDataBase;
 import gerenciamentopedidos.model.Produto;
+import gerenciamentopedidos.utils.StringUtils;
 import java.util.ArrayList;
 
 public class ProdutosService {
 ProdutoDataBase produtoDataBase = new ProdutoDataBase();
 ProdutoDao produtoDao = new ProdutoDao();
-
+StringUtils strUtils = new  StringUtils();
 public String cadastroProdutoService(Produto produto){
     if(produto.getNome().trim().isEmpty()){
-        throw new IllegalArgumentException("CAMPO 'NOME'\nNÃO PODE ESTAR VAZIO.");
-    
+        throw new IllegalArgumentException(strUtils.formatarTexto("CAMPO 'NOME' NÃO PODE ESTAR VAZIO."));
     }
 
     
@@ -29,6 +29,22 @@ public String cadastroProdutoService(Produto produto){
 }
 
 
+
+
+public String atualizarProdutoService(Produto produto){
+ArrayList condicao = new ArrayList<>();
+
+    condicao.add(produto.getNome().isEmpty());
+    condicao.add(produto.getDescricao().isEmpty());
+    condicao.add(produto.getPreco() == 0.0);
+
+    produtoDataBase.produto();
+    produtoDao.atualizarProduto(condicao,produto);
+
+    return "ID: " + produto.getId() +" | NOME: " + produto.getNome() 
+              + "\nDESCRIÇÃO: " + produto.getDescricao() + 
+                "\nPREÇO: " + produto.getPreco();
+}
 
 
 

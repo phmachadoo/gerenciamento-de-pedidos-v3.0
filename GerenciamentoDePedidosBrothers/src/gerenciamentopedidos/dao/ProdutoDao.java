@@ -35,6 +35,72 @@ public class ProdutoDao {
     }
     
     
+    public boolean atualizarProduto(ArrayList<Boolean> condicao,Produto produto){
+    ArrayList<String> valores = new ArrayList<>();
+    String sql = "UPDATE produto SET ";
+    String[] colunas = {"nome","descricao", "preco"};
+    String strPreco = String.valueOf(produto.getPreco());
+        for (int i = 0; i < condicao.size(); i++) {
+            
+            if(!condicao.get(i)){
+            sql += colunas[i] + " = ?,";
+            
+            switch(i){
+                case 0 -> valores.add(produto.getNome());
+                case 1 -> valores.add(produto.getDescricao());
+                case 2 -> valores.add(strPreco);
+            
+            }
+            
+            }
+            
+        }
+      
+            sql = sql.substring(0, sql.length() - 1);
+            sql += " WHERE id = ?;";
+             System.out.println(sql);
+        try(Connection conn = BrothersDataBase.conexao();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            int contador = 1;
+            
+           for(String valor : valores){
+           ps.setString(contador++, valor);
+           }
+            
+            ps.setInt(contador++,produto.getId());
+            
+           
+            
+            int linhas = ps.executeUpdate();
+            return linhas>0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+            
+            
+    }
+    
+    /*public boolean removerClientes(Cliente cliente){
+      String sql = "DELETE FROM clientes WHERE id = ?;";
+      
+      try (Connection conn = BrothersDataBase.conexao();
+           PreparedStatement ps = conn.prepareStatement(sql);){
+          
+          ps.setInt(1, cliente.getId());
+          int linhas = ps.executeUpdate();
+          return linhas>0;
+          
+      } catch (SQLException e) {
+          e.printStackTrace();
+          return false;
+      }
+  }*/
+    
+    
+    
     public ArrayList<Produto> listarProduto(String tipoBusca, String filtro,
             Produto produto, ArrayList<Produto> listaProdutos){
         
