@@ -4,6 +4,7 @@ package gerenciamentopedidos.service;
 import gerenciamentopedidos.dao.ClientesDao;
 import gerenciamentopedidos.database.ClienteDataBase;
 import gerenciamentopedidos.model.Cliente;
+import gerenciamentopedidos.utils.StringUtils;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -12,29 +13,31 @@ public class ClientesService {
     
     ClientesDao clienteDao = new ClientesDao();
     ClienteDataBase clienteDataBase = new ClienteDataBase();
-    
+    StringUtils sUtils = new StringUtils();
     public String cadastroClienteService(Cliente cliente){
-        
+        //Criar um limite de caracteres, pois desproporciona a tela Adicionar Pedido
         if(cliente.getNome().trim().isEmpty() &&
               cliente.getTelefone().trim().isEmpty() &&
                 cliente.getEmail().trim().isEmpty() && 
                     cliente.getDescricao().trim().isEmpty()){
             
-        throw new IllegalArgumentException("CAMPOS ''NOME'', ''TELEFONE'', ''EMAIL''\n"
-                + "E ''DESCRIÇÃO'' NÃO PODEM SER VAZIOS.");
+        throw new IllegalArgumentException(sUtils.formatarTexto("CAMPOS ''NOME'', ''TELEFONE'', ''EMAIL'' "
+                + "E ''DESCRIÇÃO'' NÃO PODEM SER VAZIOS."));
         
         }   else if(cliente.getNome().trim().isEmpty()){
         
         throw new IllegalArgumentException("CAMPO ''NOME'' NÃO PODE SER VAZIO.");
         } 
         
-        
-        
         else if (cliente.getTelefone().trim().isEmpty() && 
          cliente.getEmail().trim().isEmpty()) {
-        throw new IllegalArgumentException("CAMPOS ''TELEFONE'' E ''EMAIL''\nNÃO PODEM SER VAZIOS.");
+        throw new IllegalArgumentException(sUtils.formatarTexto("CAMPOS ''TELEFONE'' E ''EMAIL'' NÃO PODEM SER VAZIOS."));
         }
        
+        if(cliente.getNome().length() >= 16){
+        throw new IllegalArgumentException(sUtils.formatarTexto("O CAMPO ''NOME'' NÃO PODE EXCEDER A 16 CARACTERES."));
+        }
+        
         clienteDataBase.clientes();
         clienteDao.inserirClientes(cliente);
          return "NOME: " + cliente.getNome() 
@@ -47,8 +50,8 @@ public class ClientesService {
     
     public String atualizarClienteService(Cliente cliente){
     ArrayList condicao = new ArrayList<>();
-    
-     
+    ArrayList<Cliente> listaCliente = new ArrayList<>();
+    StringBuilder sb = new StringBuilder(); 
     
             condicao.add(cliente.getNome().trim().isEmpty());
             condicao.add(cliente.getTelefone().trim().isEmpty());
@@ -58,10 +61,16 @@ public class ClientesService {
      
      clienteDataBase.clientes();
      clienteDao.atualizarCliente(condicao, cliente);
+     clienteDao.listarClientes("ID", "Listar Id", cliente,listaCliente);
      
-    return "ID: " + cliente.getId() +" | NOME: " + cliente.getNome() 
-              + "\nTELEFONE: "+ cliente.getTelefone() + "\nEMAIL: " + cliente.getEmail()
-              + "\nDESCRIÇÃO: " + cliente.getDescricao();
+        for (int i = 0; i < listaCliente.size(); i++) {
+            sb.append("ID: " + listaCliente.get(i).getId() +" | NOME: " + listaCliente.get(i).getNome() 
+              + "\nTELEFONE: "+ listaCliente.get(i).getTelefone() + "\nEMAIL: " + listaCliente.get(i).getEmail()
+              + "\nDESCRIÇÃO: " + listaCliente.get(i).getDescricao());
+        }
+     
+     
+    return sb.toString();
     }
 
 

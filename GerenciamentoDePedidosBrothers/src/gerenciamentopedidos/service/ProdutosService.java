@@ -6,14 +6,17 @@ package gerenciamentopedidos.service;
 
 import gerenciamentopedidos.dao.ProdutoDao;
 import gerenciamentopedidos.database.ProdutoDataBase;
+import gerenciamentopedidos.model.Cliente;
 import gerenciamentopedidos.model.Produto;
 import gerenciamentopedidos.utils.StringUtils;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ProdutosService {
 ProdutoDataBase produtoDataBase = new ProdutoDataBase();
 ProdutoDao produtoDao = new ProdutoDao();
 StringUtils strUtils = new  StringUtils();
+
 public String cadastroProdutoService(Produto produto){
     if(produto.getNome().trim().isEmpty()){
         throw new IllegalArgumentException(strUtils.formatarTexto("CAMPO 'NOME' NÃO PODE ESTAR VAZIO."));
@@ -32,7 +35,9 @@ public String cadastroProdutoService(Produto produto){
 
 
 public String atualizarProdutoService(Produto produto){
-ArrayList condicao = new ArrayList<>();
+ArrayList<Boolean> condicao = new ArrayList<>();
+ArrayList<Produto> listaProduto = new ArrayList<>();
+StringBuilder sb = new StringBuilder();
 
     condicao.add(produto.getNome().isEmpty());
     condicao.add(produto.getDescricao().isEmpty());
@@ -40,10 +45,18 @@ ArrayList condicao = new ArrayList<>();
 
     produtoDataBase.produto();
     produtoDao.atualizarProduto(condicao,produto);
-
-    return "ID: " + produto.getId() +" | NOME: " + produto.getNome() 
-              + "\nDESCRIÇÃO: " + produto.getDescricao() + 
-                "\nPREÇO: " + produto.getPreco();
+    produtoDao.listarProduto("ID", "Listar Id", produto, listaProduto);
+    
+    if(!listaProduto.isEmpty()){
+        
+    for (int i = 0; i < listaProduto.size(); i++) {
+        sb.append("ID: " + listaProduto.get(i).getId() +" | NOME: " + listaProduto.get(i).getNome() 
+              + "\nDESCRIÇÃO: " + listaProduto.get(i).getDescricao() + 
+                "\nPREÇO: " + listaProduto.get(i).getPreco());}
+    
+    return sb.toString();
+    } else { throw new IllegalArgumentException(strUtils.formatarTexto("PRODUTO NÃO ENCONTRADO."));} 
+    
 }
 
 
@@ -72,6 +85,40 @@ StringBuilder sb = new StringBuilder();
     }
     
     return sb.toString();
+
+}
+
+public String removerProdutoService(Produto produto){
+    String resultado = "";
+    ArrayList<Produto> listaProdutos = new ArrayList<>();
+    
+       ProdutoDataBase.produto();
+       if(!produtoDao.listarProduto("ID", "Listar Id", produto,listaProdutos).isEmpty()){
+           
+           int resposta = JOptionPane.showConfirmDialog(
+            null,
+            "TEM CERTEZA QUE DESEJA REMOVER O PRODUTO?",
+            "CONFIRMAÇÃO",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+           
+           if (resposta == JOptionPane.YES_OPTION) {
+            produtoDao.removerProduto(produto);
+            resultado = "PRODUTO REMOVIDO COM SUCESSO.";
+            
+            } else if (resposta == JOptionPane.NO_OPTION){
+            
+            resultado = "NÃO FOI POSSÍVEL REMOVER O PRODUTO.";
+            
+            }
+            
+             
+        } else {
+           resultado = "ID NÃO ENCONTRADO.\nPOR FAVOR, TENTE NOVAMENTE.";
+       }
+       
+       return resultado;
 
 }
 

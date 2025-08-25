@@ -780,7 +780,9 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void btnRemoverProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverProdutosActionPerformed
         String id = txtIdRemover.getText();
 
+        txtAreaRemover.setText(produto.removerProdutoController(id));
         txtIdRemover.setText("");
+        
     }//GEN-LAST:event_btnRemoverProdutosActionPerformed
 
     private void btnCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroProdutosActionPerformed
@@ -808,6 +810,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         txtNomeAtualizar.setText("");
         txtDescricaoAtualizar.setText("");
         txtPrecoAtualizar.setText("");
+        txtIdAtualizar.setText("");
     }//GEN-LAST:event_btnAtualizarProdutosActionPerformed
 
     /**

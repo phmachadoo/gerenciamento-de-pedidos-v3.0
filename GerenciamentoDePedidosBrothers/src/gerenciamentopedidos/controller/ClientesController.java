@@ -77,7 +77,7 @@ public class ClientesController {
     public String removerClienteController(String strId){
         try {
             if(strId.isEmpty()){
-            throw new NumberFormatException("CAMPO 'ID' NÃO PODE SER VAZIO.");
+            throw new IllegalArgumentException("CAMPO 'ID' NÃO PODE SER VAZIO.");
         }
             
             Cliente clientes = new Cliente();
@@ -87,7 +87,10 @@ public class ClientesController {
             
             
         } catch (NumberFormatException e) {
+        return sUtils.formatarTexto("ACEITA-SE SOMENTE NÚMEROS.TENTE NOVAMENTE");
+        } catch (IllegalArgumentException e){
         return "ERRO AO REMOVER O(A) CLIENTE:\n" + e.getMessage();
+        
         }
     
     }

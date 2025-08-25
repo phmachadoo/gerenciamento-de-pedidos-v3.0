@@ -70,8 +70,6 @@ public class ProdutoDao {
             
             ps.setInt(contador++,produto.getId());
             
-           
-            
             int linhas = ps.executeUpdate();
             return linhas>0;
             
@@ -83,13 +81,13 @@ public class ProdutoDao {
             
     }
     
-    /*public boolean removerClientes(Cliente cliente){
-      String sql = "DELETE FROM clientes WHERE id = ?;";
+    public boolean removerProduto(Produto produto){
+      String sql = "DELETE FROM produto WHERE id = ?;";
       
       try (Connection conn = BrothersDataBase.conexao();
-           PreparedStatement ps = conn.prepareStatement(sql);){
+           PreparedStatement ps = conn.prepareStatement(sql)){
           
-          ps.setInt(1, cliente.getId());
+          ps.setInt(1, produto.getId());
           int linhas = ps.executeUpdate();
           return linhas>0;
           
@@ -97,14 +95,14 @@ public class ProdutoDao {
           e.printStackTrace();
           return false;
       }
-  }*/
+  }
     
     
     
     public ArrayList<Produto> listarProduto(String tipoBusca, String filtro,
             Produto produto, ArrayList<Produto> listaProdutos){
         
-        String sql= "";
+      String sql= "";
       boolean usarNome = tipoBusca.equalsIgnoreCase("NOME");
       boolean usarID = tipoBusca.equalsIgnoreCase("ID");
       

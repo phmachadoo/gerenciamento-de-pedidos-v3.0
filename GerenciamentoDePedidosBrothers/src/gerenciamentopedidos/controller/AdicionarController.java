@@ -2,6 +2,7 @@
 package gerenciamentopedidos.controller;
 
 import gerenciamentopedidos.model.Cliente;
+import gerenciamentopedidos.model.Produto;
 import gerenciamentopedidos.service.AdicionarService;
 import java.util.ArrayList;
 
@@ -18,10 +19,6 @@ public class AdicionarController {
     
     return listaClientesController;
     }
-    
-    
-    
-    
     
     
     
@@ -48,6 +45,14 @@ public class AdicionarController {
     
     }
     
+    public ArrayList<Produto> comboBoxProdutosController(ArrayList<Produto> listaProdutosController){
+    Produto produto = new Produto();
+    listaProdutosController.add(produto);
+    adService.comboBoxProdutosService(produto, listaProdutosController);
+    
+    return listaProdutosController;
+    
+    }
     
     
     
