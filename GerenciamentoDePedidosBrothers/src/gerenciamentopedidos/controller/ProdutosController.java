@@ -13,7 +13,7 @@ public class ProdutosController {
     public String cadastroProdutoController(String nome, String descricao, String strPreco){
         try {
             if(nome.isEmpty() && descricao.isEmpty() && strPreco.isEmpty()){
-            throw new IllegalArgumentException(strUtils.formatarTexto("CAMPO 'PREÇO' NÃO PODE SER VAZIO."));
+            throw new IllegalArgumentException(strUtils.formatarTexto("PREENCHA OS CAMPOS A SEREM CADASTRADOS."));
         }
             
             Produto produto = new Produto();

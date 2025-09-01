@@ -14,7 +14,6 @@ public class AdicionarController {
     
     public ArrayList<Cliente> comboBoxClientesController(ArrayList<Cliente> listaClientesController){
     Cliente cliente = new Cliente();
-    listaClientesController.add(cliente);
     adService.comboBoxClientesService(cliente,listaClientesController);
     
     return listaClientesController;
@@ -47,7 +46,6 @@ public class AdicionarController {
     
     public ArrayList<Produto> comboBoxProdutosController(ArrayList<Produto> listaProdutosController){
     Produto produto = new Produto();
-    listaProdutosController.add(produto);
     adService.comboBoxProdutosService(produto, listaProdutosController);
     
     return listaProdutosController;
