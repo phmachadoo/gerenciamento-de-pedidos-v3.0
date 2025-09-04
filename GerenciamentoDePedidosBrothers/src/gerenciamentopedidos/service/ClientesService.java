@@ -15,7 +15,6 @@ public class ClientesService {
     ClienteDataBase clienteDataBase = new ClienteDataBase();
     StringUtils sUtils = new StringUtils();
     public String cadastroClienteService(Cliente cliente){
-        //Criar um limite de caracteres, pois desproporciona a tela Adicionar Pedido
         if(cliente.getNome().trim().isEmpty() &&
               cliente.getTelefone().trim().isEmpty() &&
                 cliente.getEmail().trim().isEmpty() && 
@@ -34,7 +33,7 @@ public class ClientesService {
         throw new IllegalArgumentException(sUtils.formatarTexto("CAMPOS ''TELEFONE'' E ''EMAIL'' NÃO PODEM SER VAZIOS."));
         }
        
-        if(cliente.getNome().length() >= 16){
+        if(cliente.getNome().length() > 30){
         throw new IllegalArgumentException(sUtils.formatarTexto("O CAMPO ''NOME'' NÃO PODE EXCEDER A 16 CARACTERES."));
         }
         
@@ -53,24 +52,28 @@ public class ClientesService {
     ArrayList<Cliente> listaCliente = new ArrayList<>();
     StringBuilder sb = new StringBuilder(); 
     
+    if(cliente.getNome().length() >= 25){
+        throw new IllegalArgumentException(sUtils.formatarTexto("O CAMPO ''NOME'' NÃO PODE EXCEDER A 16 CARACTERES."));
+        }
             condicao.add(cliente.getNome().trim().isEmpty());
             condicao.add(cliente.getTelefone().trim().isEmpty());
             condicao.add(cliente.getEmail().trim().isEmpty());
             condicao.add(cliente.getDescricao().trim().isEmpty());
      
+            
      
      clienteDataBase.clientes();
      clienteDao.atualizarCliente(condicao, cliente);
      clienteDao.listarClientes("ID", "Listar Id", cliente,listaCliente);
      
+     if(!listaCliente.isEmpty()){
         for (int i = 0; i < listaCliente.size(); i++) {
             sb.append("ID: " + listaCliente.get(i).getId() +" | NOME: " + listaCliente.get(i).getNome() 
               + "\nTELEFONE: "+ listaCliente.get(i).getTelefone() + "\nEMAIL: " + listaCliente.get(i).getEmail()
               + "\nDESCRIÇÃO: " + listaCliente.get(i).getDescricao());
         }
-     
-     
-    return sb.toString();
+    return sb.toString();}
+     else{throw new IllegalArgumentException(sUtils.formatarTexto("CLIENTE NÃO ENCONTRADO."));}
     }
 
 

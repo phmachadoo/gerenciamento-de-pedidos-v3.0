@@ -409,7 +409,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
             }
         });
 
-        comboBoxClientes.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        comboBoxClientes.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         comboBoxClientes.setForeground(new java.awt.Color(0, 0, 102));
         comboBoxClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE UM CLIENTE" }));
 
@@ -630,7 +630,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(0, 0, 102));
         jLabel15.setText("=");
 
-        btnZerar.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        btnZerar.setFont(new java.awt.Font("Dubai", 1, 15)); // NOI18N
         btnZerar.setForeground(new java.awt.Color(0, 0, 102));
         btnZerar.setText("ZERAR CARRINHO");
         btnZerar.addActionListener(new java.awt.event.ActionListener() {

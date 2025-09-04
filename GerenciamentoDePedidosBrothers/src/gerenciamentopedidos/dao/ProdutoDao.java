@@ -4,7 +4,6 @@
  */
 package gerenciamentopedidos.dao;
 import gerenciamentopedidos.database.BrothersDataBase;
-import gerenciamentopedidos.model.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

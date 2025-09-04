@@ -12,10 +12,10 @@ public class ProdutoDataBase {
     
     public static boolean produto(){
     String sql = "CREATE TABLE IF NOT EXISTS produto("
-            + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "nome TEXT NOT NULL,"
-            + "descricao TEXT,"
-            + "preco REAL NOT NULL"
+            + "id INT PRIMARY KEY AUTO_INCREMENT,"
+            + "nome VARCHAR(30) NOT NULL,"
+            + "descricao VARCHAR(100),"
+            + "preco DECIMAL(7,2) NOT NULL"
             + ");";
     
             try(Connection conn = BrothersDataBase.conexao();

@@ -6,7 +6,6 @@ package gerenciamentopedidos.service;
 
 import gerenciamentopedidos.dao.ProdutoDao;
 import gerenciamentopedidos.database.ProdutoDataBase;
-import gerenciamentopedidos.model.Cliente;
 import gerenciamentopedidos.model.Produto;
 import gerenciamentopedidos.utils.StringUtils;
 import java.util.ArrayList;
@@ -18,10 +17,15 @@ ProdutoDao produtoDao = new ProdutoDao();
 StringUtils strUtils = new  StringUtils();
 
 public String cadastroProdutoService(Produto produto){
+    //DEIXAR O NOME COM LETRAS MAIÚSCULAS
     if(produto.getNome().trim().isEmpty()){
         throw new IllegalArgumentException(strUtils.formatarTexto("CAMPO 'NOME' NÃO PODE ESTAR VAZIO."));
     }
 
+    if(produto.getNome().length() > 30){
+    throw new IllegalArgumentException("CAMPO 'NOME' NÃO PODE EXCEDER A 30 CARACTERES.");
+    
+    }
     
     produtoDataBase.produto();
     produtoDao.cadastroProduto(produto);
@@ -30,8 +34,6 @@ public String cadastroProdutoService(Produto produto){
         + "PREÇO: " + produto.getPreco();
 
 }
-
-
 
 
 public String atualizarProdutoService(Produto produto){
@@ -43,6 +45,11 @@ StringBuilder sb = new StringBuilder();
     condicao.add(produto.getDescricao().isEmpty());
     condicao.add(produto.getPreco() == 0.0);
 
+    if(produto.getNome().length() >= 20){
+    throw new IllegalArgumentException("CAMPO 'NOME' NÃO PODE EXCEDER A 16 CARACTERES.");
+    
+    }
+    
     produtoDataBase.produto();
     produtoDao.atualizarProduto(condicao,produto);
     produtoDao.listarProduto("ID", "Listar Id", produto, listaProduto);

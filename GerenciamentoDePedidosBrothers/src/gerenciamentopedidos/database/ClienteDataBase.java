@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
 public class ClienteDataBase {
     public static boolean clientes(){
     String sql = "CREATE TABLE IF NOT EXISTS clientes("
-            + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + "nome TEXT NOT NULL,"
-            + "telefone TEXT,"
-            + "email TEXT,"
-            + "descricao TEXT,"
-            + "total_pedidos INTEGER DEFAULT 0"
+            + "id INTEGER PRIMARY KEY AUTO_INCREMENT,"
+            + "nome VARCHAR(30) NOT NULL,"
+            + "telefone VARCHAR(17),"
+            + "email VARCHAR(50),"
+            + "descricao VARCHAR(100),"
+            + "total_pedidos INT DEFAULT 0"
             + ");";
     
         try(Connection conn = BrothersDataBase.conexao();
