@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentListener;
 
@@ -126,6 +127,8 @@ public class TelaAdicionar extends javax.swing.JFrame {
                     txtPreco.setText(texto);
                 
             }}});
+        
+        txtDescricaoProduto.setEditable(false);
         
     }
 
@@ -510,7 +513,6 @@ public class TelaAdicionar extends javax.swing.JFrame {
             }
         });
 
-        txtQuantidade.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
         txtQuantidade.setForeground(new java.awt.Color(0, 0, 51));
 
         jLabel10.setFont(new java.awt.Font("Dubai", 0, 13)); // NOI18N
@@ -586,9 +588,9 @@ public class TelaAdicionar extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -616,6 +618,11 @@ public class TelaAdicionar extends javax.swing.JFrame {
         btnCarrinho.setFont(new java.awt.Font("Dubai", 1, 15)); // NOI18N
         btnCarrinho.setForeground(new java.awt.Color(0, 0, 102));
         btnCarrinho.setText("ADICIONAR AO CARRINHO");
+        btnCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarrinhoActionPerformed(evt);
+            }
+        });
 
         btnFinalizar.setFont(new java.awt.Font("Dubai", 1, 15)); // NOI18N
         btnFinalizar.setForeground(new java.awt.Color(0, 0, 102));
@@ -705,7 +712,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -765,7 +772,23 @@ public class TelaAdicionar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-      
+        String nome = txtNome.getText();
+        String telefone = txtTelefone.getText();
+        String email = txtEmail.getText();
+        String descricao = txtDescricaoCliente.getText();
+        
+        
+        
+        String tipoServico = (String) comboBoxProduto.getSelectedItem();
+        System.out.println(tipoServico);
+        String descProduto = txtDescricaoProduto.getText();
+        String quantidade = txtQuantidade.getText();
+        String preco = txtPreco.getText();
+        String descPedido = txtDescPedido.getText();
+        Date data = calendario.getDate();
+        
+        txtArea.setText(adController.finalizarPedidoController(nome, telefone, email, descricao,
+                tipoServico, descProduto, quantidade, preco, descPedido, data));
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -780,14 +803,11 @@ public class TelaAdicionar extends javax.swing.JFrame {
         }
         
         
-        //adController.adicionarClienteController(clienteFixo, nome, email, telefone, descricao );
-
-        
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnZerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZerarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnZerarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
@@ -795,6 +815,12 @@ public class TelaAdicionar extends javax.swing.JFrame {
         dispose();
 
     }//GEN-LAST:event_btnProdutosActionPerformed
+
+    private void btnCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarrinhoActionPerformed
+        
+
+
+    }//GEN-LAST:event_btnCarrinhoActionPerformed
 
     /**
      * @param args the command line arguments

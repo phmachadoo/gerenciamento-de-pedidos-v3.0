@@ -13,7 +13,6 @@ public class PedidoDataBase {
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "id_cliente INTEGER NOT NULL,"
             + "data TEXT NOT NULL,"
-            + "status TEXT NOT NULL,"
             + "total REAL,"
             + "FOREIGN KEY (id_cliente) REFERENCES cliente(id)"
             + ");";

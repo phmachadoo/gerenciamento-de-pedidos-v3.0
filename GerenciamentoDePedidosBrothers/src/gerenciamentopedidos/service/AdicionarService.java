@@ -11,6 +11,7 @@ public class AdicionarService {
     
     ClientesDao clientesDao = new ClientesDao();
     ProdutoDao produtoDao = new ProdutoDao();
+    
     public ArrayList<Cliente> comboBoxClientesService(Cliente cliente, ArrayList<Cliente> listaClientesService){
     
     clientesDao.listarClientes("NOME", "Listar todos", cliente,listaClientesService);

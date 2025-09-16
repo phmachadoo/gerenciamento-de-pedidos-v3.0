@@ -11,7 +11,6 @@ public class ItemPedidoDataBase {
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "id_pedido INTEGER NOT NULL,"
             + "id_produtos INTEGER NOT NULL,"
-            + "nome_produto TEXT NOT NULL,"
             + "descricao TEXT DEFAULT '',"
             + "quantidade INTEGER NOT NULL,"
             + "subtotal REAL NOT NULL,"
