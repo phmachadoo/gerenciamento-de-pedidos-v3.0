@@ -607,7 +607,7 @@ public class TelaAdicionar extends javax.swing.JFrame {
         );
 
         txtArea.setColumns(20);
-        txtArea.setForeground(new java.awt.Color(0, 0, 51));
+        txtArea.setForeground(new java.awt.Color(0, 0, 102));
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
 
@@ -777,8 +777,6 @@ public class TelaAdicionar extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String descricao = txtDescricaoCliente.getText();
         
-        
-        
         String tipoServico = (String) comboBoxProduto.getSelectedItem();
         System.out.println(tipoServico);
         String descProduto = txtDescricaoProduto.getText();
@@ -817,9 +815,22 @@ public class TelaAdicionar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarrinhoActionPerformed
+        String nome = txtNome.getText();
+        String telefone = txtTelefone.getText();
+        String email = txtEmail.getText();
+        String descricao = txtDescricaoCliente.getText();
         
+        String tipoServico = (String) comboBoxProduto.getSelectedItem();
+        String quantidade = txtQuantidade.getText();
+        String preco = txtPreco.getText();
+        String descPedido = txtDescPedido.getText();
+        Date data = calendario.getDate();
 
-
+        txtArea.setText(adController.adicionarCarrinhoController(nome, telefone, email, descricao,
+                tipoServico, quantidade, preco, descPedido, data));
+        
+        
+        
     }//GEN-LAST:event_btnCarrinhoActionPerformed
 
     /**

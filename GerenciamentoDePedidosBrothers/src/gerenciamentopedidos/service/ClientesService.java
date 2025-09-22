@@ -15,14 +15,12 @@ public class ClientesService {
     ClienteDataBase clienteDataBase = new ClienteDataBase();
     StringUtils sUtils = new StringUtils();
     public String cadastroClienteService(Cliente cliente){
-        //Criar um limite de caracteres, pois desproporciona a tela Adicionar Pedido
         if(cliente.getNome().trim().isEmpty() &&
               cliente.getTelefone().trim().isEmpty() &&
                 cliente.getEmail().trim().isEmpty() && 
                     cliente.getDescricao().trim().isEmpty()){
             
-        throw new IllegalArgumentException(sUtils.formatarTexto("CAMPOS ''NOME'', ''TELEFONE'', ''EMAIL'' "
-                + "E ''DESCRIÇÃO'' NÃO PODEM SER VAZIOS."));
+        throw new IllegalArgumentException(sUtils.formatarTexto("PREENCHA OS CAMPOS DE 'CLIENTE'."));
         
         }   else if(cliente.getNome().trim().isEmpty()){
         

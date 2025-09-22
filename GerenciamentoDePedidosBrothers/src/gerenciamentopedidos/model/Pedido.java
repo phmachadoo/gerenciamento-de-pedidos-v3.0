@@ -10,15 +10,7 @@ public class Pedido {
     private List<ItemPedido> carrinho = new ArrayList<>();
     private String status;
     private double valorTotal;
-    private Date data;
 
-    public Pedido(int id, Cliente cliente, String status, Date data,double valorTotal) {
-        this.id = id;
-        this.cliente = cliente;
-        this.status = status;
-        this.valorTotal = valorTotal;
-        this.data = data;
-    }
 
     public Pedido() {
     }
@@ -55,13 +47,15 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 
-    public Date getData() {
-        return data;
+    public List<ItemPedido> getCarrinho() {
+        return carrinho;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setCarrinho(List<ItemPedido> carrinho) {
+        this.carrinho = carrinho;
     }
+
+  
    
     
     

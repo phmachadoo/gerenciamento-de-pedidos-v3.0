@@ -1,6 +1,8 @@
 
 package gerenciamentopedidos.model;
 
+import java.util.Date;
+
 
 public class ItemPedido {
     //refazer a classe para o 'item_pedido'
@@ -8,14 +10,8 @@ public class ItemPedido {
     private String nomeProduto, descricao;
     private int quantidade;
     private double preco;
-
-    public ItemPedido(int id, String nomeProduto, String descricao, int quantidade, double preco) {
-        this.id = id;
-        this.nomeProduto = nomeProduto;
-        this.descricao = descricao;
-        this.quantidade = quantidade;
-        this.preco = preco;
-    }
+    private Date date;
+    
 
     public ItemPedido() {
     }
@@ -59,6 +55,14 @@ public class ItemPedido {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
     
