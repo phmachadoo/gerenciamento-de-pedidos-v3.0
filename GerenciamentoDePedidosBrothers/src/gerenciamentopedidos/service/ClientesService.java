@@ -14,6 +14,7 @@ public class ClientesService {
     ClientesDao clienteDao = new ClientesDao();
     ClienteDataBase clienteDataBase = new ClienteDataBase();
     StringUtils sUtils = new StringUtils();
+    
     public String cadastroClienteService(Cliente cliente){
         if(cliente.getNome().trim().isEmpty() &&
               cliente.getTelefone().trim().isEmpty() &&
@@ -55,7 +56,6 @@ public class ClientesService {
             condicao.add(cliente.getTelefone().trim().isEmpty());
             condicao.add(cliente.getEmail().trim().isEmpty());
             condicao.add(cliente.getDescricao().trim().isEmpty());
-     
      
      clienteDataBase.clientes();
      clienteDao.atualizarCliente(condicao, cliente);

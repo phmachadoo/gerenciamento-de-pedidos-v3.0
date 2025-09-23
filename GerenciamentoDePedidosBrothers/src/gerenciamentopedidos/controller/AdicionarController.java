@@ -44,22 +44,6 @@ public class AdicionarController {
         cliente.setEmail(email);
         cliente.setDescricao(descricao);
         
-        if(cliente.getNome().trim().isEmpty() &&
-              cliente.getTelefone().trim().isEmpty() &&
-                cliente.getEmail().trim().isEmpty() && 
-                    cliente.getDescricao().trim().isEmpty()){
-    throw new IllegalArgumentException("PREENCHA OS CAMPOS DE 'CLIENTE'.");
-    }
-    
-    else if(cliente.getNome().trim().isEmpty()){
-        throw new IllegalArgumentException("CAMPO ''NOME'' NÃO PODE SER VAZIO.");
-        } 
-       
-    else if (cliente.getTelefone().trim().isEmpty() && 
-         cliente.getEmail().trim().isEmpty()) {
-        throw new IllegalArgumentException(sUtils.formatarTexto("CAMPOS ''TELEFONE'' OU ''EMAIL'' NÃO PODEM SER VAZIOS."));
-        }
-        
         int quantidades = Integer.parseInt(quantidade);
         double valor = Double.parseDouble(preco);
         
@@ -70,9 +54,6 @@ public class AdicionarController {
         itemPedido.setDescricao(descricaoPedido);
         itemPedido.setDate(data);
         
-        if(itemPedido.getNomeProduto().equalsIgnoreCase("selecione um produto")){
-              throw new IllegalArgumentException("SELECIONE UM PRODUTO VÁLIDO");
-        }   
         
         return adService.adicionarCarrinhoService(cliente, itemPedido);
             

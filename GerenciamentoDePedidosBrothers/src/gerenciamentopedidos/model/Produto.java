@@ -5,6 +5,7 @@ public class Produto {
     private int id;
     private String nome, descricao;
     private double preco;
+    //fazer agregação na classe itemPedido
 
     public Produto() {
     }
